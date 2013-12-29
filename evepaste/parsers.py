@@ -7,11 +7,16 @@ Various parsers for string input which is copy/pastable from Eve Online.
 import re
 
 from evepaste.exceptions import Unparsable
+from evepaste.utils import split_and_strip, regex_match_lines
 
-CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)", re.MULTILINE)
-HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([\S ]+)", re.MULTILINE)
-EFT_LIST_RE = re.compile(r"^([A-Za-z0-9 ]+)", re.MULTILINE)
-DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)", re.MULTILINE)
+CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)")
+HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([\S ]+)")
+EFT_LIST_RE = re.compile(r"^([A-Za-z0-9 ]+)")
+EFT_BLACKLIST = ['[empty high slot]',
+                 '[empty low slot]',
+                 '[empty medium slot]',
+                 '[empty rig slot]']
+DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)")
 
 
 def parse_cargo_scan(paste_string):
@@ -20,8 +25,11 @@ def parse_cargo_scan(paste_string):
     :param string paste_string: A raw string pasted from Eve Online of a cargo
                                 scan result.
     """
-    matches = CARGO_SCAN_RE.findall(paste_string)
-    return [{'name': name, 'quantity': int(count)} for count, name in matches]
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(CARGO_SCAN_RE, paste_lines)
+    result = [{'name': name, 'quantity': int(count)}
+              for count, name in matches]
+    return result, bad_lines
 
 
 def parse_human_listing(paste_string):
@@ -29,32 +37,45 @@ def parse_human_listing(paste_string):
 
     :param string paste_string: A new-line separated list of items
     """
-    matches = HUMAN_LIST_RE.findall(paste_string)
-    return [{'name': name, 'quantity': int(count or 1)}
-            for count, name in matches]
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(HUMAN_LIST_RE, paste_lines)
+    result = [{'name': name, 'quantity': int(count or 1)}
+              for count, name in matches]
+    return result, bad_lines
 
 
 def parse_eft(paste_string):
-    first_line = paste_string.lstrip().split('\n')[0]
-    title_parts = first_line.strip('[]').split(',', 1)
+    paste_lines = split_and_strip(paste_string)
+
+    for item in EFT_BLACKLIST:
+        if item in paste_lines:
+            paste_lines.remove(item)
+
+    if not paste_lines:
+        raise Unparsable('No valid parsable lines')
+
+    title_parts = paste_lines[0].strip('[]').split(',', 1)
     if len(title_parts) != 2:
         raise Unparsable('Invalid EFT title line')
 
-    ship, eft_name = first_line.strip('[]').split(',', 1)
-    module_matches = EFT_LIST_RE.findall(paste_string)
-    modules = [name for name in module_matches]
+    ship, eft_name = title_parts
+    matches, bad_lines = regex_match_lines(EFT_LIST_RE, paste_lines[1:])
 
-    return {'ship': ship.strip(),
-            'name': eft_name.strip(),
-            'modules': modules}
+    result = {'ship': ship.strip(),
+              'name': eft_name.strip(),
+              'modules': [res[0] for res in matches]}
+    return result, bad_lines
 
 
 def parse_dscan(paste_string):
-    matches = DSCAN_LIST_RE.findall(paste_string)
-    return [{'name': name, 'type': _type, 'distance': distance}
-            for name, _type, distance in matches]
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(DSCAN_LIST_RE, paste_lines)
 
-# TODO: contracts
+    result = [{'name': name, 'type': _type, 'distance': distance}
+              for name, _type, distance in matches]
+    return result, bad_lines
+
+# TODO: Contracts
 # TODO: Manufactoring
 # TODO: Assets
 # TODO: Inventory

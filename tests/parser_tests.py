@@ -8,19 +8,23 @@ from evepaste.exceptions import Unparsable
 
 CARGO_SCAN_TABLE = [
     ('1 Minmatar Shuttle\n2 Gallente Shuttle',
-     [{'name': 'Minmatar Shuttle', 'quantity': 1},
-      {'name': 'Gallente Shuttle', 'quantity': 2}]),
-    ('Minmatar Shuttle', []),
-    ('\n\n1 Minmatar Shuttle', [{'name': 'Minmatar Shuttle', 'quantity': 1}]),
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1},
+       {'name': 'Gallente Shuttle', 'quantity': 2}], [])),
+    ('Minmatar Shuttle', ([], ['Minmatar Shuttle'])),
+    ('\n\n1 Minmatar Shuttle',
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1}], [])),
 ]
 
 HUMAN_LIST_TABLE = [
     ('1 Minmatar Shuttle\n2 Gallente Shuttle',
-     [{'name': 'Minmatar Shuttle', 'quantity': 1},
-      {'name': 'Gallente Shuttle', 'quantity': 2}]),
-    ('Minmatar Shuttle', [{'name': 'Minmatar Shuttle', 'quantity': 1}]),
-    ('1x Minmatar Shuttle', [{'name': 'Minmatar Shuttle', 'quantity': 1}]),
-    ('1xMinmatar Shuttle', [{'name': 'Minmatar Shuttle', 'quantity': 1}]),
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1},
+       {'name': 'Gallente Shuttle', 'quantity': 2}], [])),
+    ('Minmatar Shuttle',
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1}], [])),
+    ('1x Minmatar Shuttle',
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1}], [])),
+    ('1xMinmatar Shuttle',
+     ([{'name': 'Minmatar Shuttle', 'quantity': 1}], [])),
 ]
 
 EFT_TABLE = [
@@ -37,7 +41,7 @@ Warp Disruptor I
 200mm AutoCannon I, EMP S
 200mm AutoCannon I, EMP S
 [empty high slot]''',
-     {'ship': 'Rifter',
+     ({'ship': 'Rifter',
       'name': 'Fleet Tackle',
       'modules': ['Nanofiber Internal Structure I',
                   'Nanofiber Internal Structure I',
@@ -48,10 +52,10 @@ Warp Disruptor I
                   '200mm AutoCannon I',
                   '200mm AutoCannon I',
                   '200mm AutoCannon I']
-      }),
+       }, [])),
     ('', Unparsable),
     ('[test]', Unparsable),
-    ('[Rifter,test]', {'modules': [], 'name': 'test', 'ship': 'Rifter'}),
+    ('[Rifter,test]', ({'modules': [], 'name': 'test', 'ship': 'Rifter'}, [])),
 ]
 
 DSCAN_TABLE = [
@@ -59,15 +63,15 @@ DSCAN_TABLE = [
 +\tThrasher\t12 km
 some dude's Stabber Fleet Issue\tStabber Fleet Issue\t-
 Wreck\tTayra\t82 km''',
-     [{'name': '+', 'type': 'Noctis', 'distance': '3,225 m'},
-      {'name': '+', 'type': 'Thrasher', 'distance': '12 km'},
-      {'name': "some dude's Stabber Fleet Issue",
-       'type': 'Stabber Fleet Issue',
-       'distance': '-'},
-      {'name': "Wreck", 'type': 'Tayra', 'distance': '82 km'}]),
+     ([{'name': '+', 'type': 'Noctis', 'distance': '3,225 m'},
+       {'name': '+', 'type': 'Thrasher', 'distance': '12 km'},
+       {'name': "some dude's Stabber Fleet Issue",
+        'type': 'Stabber Fleet Issue',
+        'distance': '-'},
+       {'name': "Wreck", 'type': 'Tayra', 'distance': '82 km'}], [])),
     ('test\tNoctis\t3 225 m',
-     [{'name': 'test', 'type': 'Noctis', 'distance': '3 225 m'}]),
-    ('', []),
+     ([{'name': 'test', 'type': 'Noctis', 'distance': '3 225 m'}], [])),
+    ('', ([], [])),
 ]
 
 
