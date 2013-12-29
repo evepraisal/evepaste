@@ -1,7 +1,7 @@
 import unittest
 import inspect
 
-from evepaste.parsers import parse_cargo_scan, parse_human_listing, parse_eft
+from evepaste import parse_cargo_scan, parse_human_listing, parse_eft
 from evepaste.exceptions import Unparsable
 
 
