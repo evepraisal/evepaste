@@ -8,9 +8,10 @@ import re
 
 from evepaste.exceptions import Unparsable
 
-CARGO_SCAN_RE = re.compile(r"^(\d+) ([A-Za-z0-9 ]+)", re.MULTILINE)
-HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([A-Za-z0-9 ]+)", re.MULTILINE)
+CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)", re.MULTILINE)
+HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([\S ]+)", re.MULTILINE)
 EFT_LIST_RE = re.compile(r"^([A-Za-z0-9 ]+)", re.MULTILINE)
+DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)", re.MULTILINE)
 
 
 def parse_cargo_scan(paste_string):
@@ -47,7 +48,12 @@ def parse_eft(paste_string):
             'name': eft_name.strip(),
             'modules': modules}
 
-# TODO: d-scan
+
+def parse_dscan(paste_string):
+    matches = DSCAN_LIST_RE.findall(paste_string)
+    return [{'name': name, 'type': _type, 'distance': distance}
+            for name, _type, distance in matches]
+
 # TODO: contracts
 # TODO: Manufactoring
 # TODO: Assets

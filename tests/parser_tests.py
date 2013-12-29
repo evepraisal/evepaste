@@ -1,7 +1,8 @@
 import unittest
 import inspect
 
-from evepaste import parse_cargo_scan, parse_human_listing, parse_eft
+from evepaste import (
+    parse_cargo_scan, parse_human_listing, parse_eft, parse_dscan)
 from evepaste.exceptions import Unparsable
 
 
@@ -53,6 +54,22 @@ Warp Disruptor I
     ('[Rifter,test]', {'modules': [], 'name': 'test', 'ship': 'Rifter'}),
 ]
 
+DSCAN_TABLE = [
+    ('''+\tNoctis\t3,225 m
++\tThrasher\t12 km
+some dude's Stabber Fleet Issue\tStabber Fleet Issue\t-
+Wreck\tTayra\t82 km''',
+     [{'name': '+', 'type': 'Noctis', 'distance': '3,225 m'},
+      {'name': '+', 'type': 'Thrasher', 'distance': '12 km'},
+      {'name': "some dude's Stabber Fleet Issue",
+       'type': 'Stabber Fleet Issue',
+       'distance': '-'},
+      {'name': "Wreck", 'type': 'Tayra', 'distance': '82 km'}]),
+    ('test\tNoctis\t3 225 m',
+     [{'name': 'test', 'type': 'Noctis', 'distance': '3 225 m'}]),
+    ('', []),
+]
+
 
 class TestParsers(unittest.TestCase):
 
@@ -72,3 +89,6 @@ class TestParsers(unittest.TestCase):
 
     def test_parse_eft(self):
         self._run_table_tests(parse_eft, EFT_TABLE)
+
+    def test_parse_dscan(self):
+        self._run_table_tests(parse_dscan, DSCAN_TABLE)
