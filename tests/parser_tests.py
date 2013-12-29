@@ -16,7 +16,9 @@ def check_table(funct, input_str, expected):
             raise AssertionError('Exception %s not raised' % expected)
     else:
         result = funct(input_str)
-        assert result == expected
+        assert result == expected, '''Unexpected result.
+Expected: %s
+Actual: %s''' % (expected, result)
 
 
 def test_generator():
