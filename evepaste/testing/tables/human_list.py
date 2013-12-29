@@ -1,3 +1,9 @@
+"""
+evepaste.testing.tables.human_list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Human list table tests
+
+"""
 from evepaste import parse_human_listing
 from evepaste.testing import TableTestGroup
 

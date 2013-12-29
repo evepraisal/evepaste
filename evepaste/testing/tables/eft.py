@@ -1,3 +1,9 @@
+"""
+evepaste.testing.tables.eft
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EFT table tests
+
+"""
 from evepaste import parse_eft
 from evepaste.exceptions import Unparsable
 from evepaste.testing import TableTestGroup

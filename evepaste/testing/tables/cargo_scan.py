@@ -1,3 +1,9 @@
+"""
+evepaste.testing.tables.cargo_scan
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cargo Scan table tests
+
+"""
 from evepaste import parse_cargo_scan
 from evepaste.testing import TableTestGroup
 

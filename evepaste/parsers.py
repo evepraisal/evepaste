@@ -1,6 +1,6 @@
 """
-eve_paste.parsers
-~~~~~~~~~~~~~~~~~
+evepaste.parsers
+~~~~~~~~~~~~~~~~
 Various parsers for string input which is copy/pastable from Eve Online.
 
 """
@@ -45,6 +45,10 @@ def parse_human_listing(paste_string):
 
 
 def parse_eft(paste_string):
+    """ Parse EFT format
+
+    :param string paste_string: An EFT block string
+    """
     paste_lines = split_and_strip(paste_string)
 
     for item in EFT_BLACKLIST:
@@ -68,6 +72,10 @@ def parse_eft(paste_string):
 
 
 def parse_dscan(paste_string):
+    """ Parse D-Scan format
+
+    :param string paste_string: A D-Scan result string
+    """
     paste_lines = split_and_strip(paste_string)
     matches, bad_lines = regex_match_lines(DSCAN_LIST_RE, paste_lines)
 

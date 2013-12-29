@@ -1,3 +1,9 @@
+"""
+evepaste.testing.tables.dscan
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D-Scan table tests
+
+"""
 from evepaste import parse_dscan
 from evepaste.testing import TableTestGroup
 
