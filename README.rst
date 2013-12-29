@@ -1,5 +1,11 @@
 Eve Paste
 =========
+.. image:: https://api.travis-ci.org/sudorandom/evepaste.png
+    :target: https://travis-ci.org/sudorandom/evepaste
+        
+.. image:: https://landscape.io/github/sudorandom/evepaste/master/landscape.png
+    :target: https://landscape.io/github/sudorandom/evepaste/master
+
 A Python library to help parse various things that are copy/pastable from the Eve Online UI.
 
 This is currently a **work in progress**. Interfaces can and will change from version to version.
