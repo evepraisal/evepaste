@@ -8,6 +8,9 @@ except ImportError:
     print("    http://python-distribute.org/distribute_setup.py")
     sys.exit(1)
 
+from evepaste import __version__
+
+
 description = ("A Python library to help parse various things that are "
                "copy/pastable from the Eve Online UI.")
 
@@ -22,7 +25,7 @@ else:
 
 setup(
     name='evepaste',
-    version='0.1',
+    version=__version__,
     description=description,
     long_description=long_description,
     author='Kevin McDonald',
