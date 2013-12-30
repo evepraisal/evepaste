@@ -9,23 +9,24 @@ import re
 from evepaste.exceptions import Unparsable
 from evepaste.utils import split_and_strip, regex_match_lines
 
-CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)")
+CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)$")
 HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([\S ]+)")
-EFT_LIST_RE = re.compile(r"^([A-Za-z0-9 ]+)")
+EFT_LIST_RE = re.compile(r"^([\S ]+)$")
+EFT_LIST_RE2 = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
                  '[empty low slot]',
                  '[empty medium slot]',
                  '[empty rig slot]']
-DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)")
+DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)$")
 LOOT_HIST_RE = re.compile(
-    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted (\d+) x ([\S ]+)")
-CONTRACT_RE = re.compile(r"^([\S ]+)\t(\d+)\t([\S ]*)\t([\S ]*)\t?(Fitted|)")
+    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted (\d+) x ([\S ]+)$")
+CONTRACT_RE = re.compile(r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
 ASSET_LIST_RE = re.compile(
-    r"^([\S ]*)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)")
-BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]")
-BOM_RE2 = re.compile(r"^([\S ]+) \[(\d+)\]")
+    r"^([\S ]*)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)$")
+BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
+BOM_RE2 = re.compile(r"^([\S ]+) \[(\d+)\]$")
 MANUFACTURING_RE = re.compile(
-    r"^([\S ]+)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)")
+    r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
 
 
 def parse_cargo_scan(paste_string):
@@ -72,11 +73,19 @@ def parse_eft(paste_string):
         raise Unparsable('Invalid EFT title line')
 
     ship, eft_name = title_parts
+    # Match "Module"
     matches, bad_lines = regex_match_lines(EFT_LIST_RE, paste_lines[1:])
+    # Match "Module, Ammo"
+    matches2, bad_lines2 = regex_match_lines(EFT_LIST_RE2,
+                                             [r[0] for r in matches])
+
+    modules = [{'name': res} for res in bad_lines2]
+    for module, ammo in matches2:
+        modules.append({'name': module, 'ammo': ammo})
 
     result = {'ship': ship.strip(),
               'name': eft_name.strip(),
-              'modules': [res[0] for res in matches]}
+              'modules': [res for res in modules]}
     return result, bad_lines
 
 
@@ -118,10 +127,10 @@ def parse_contract(paste_string):
     matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': int(quantity),
+               'quantity': int(quantity or 1),
                'type': _type,
                'category': category,
-               'fitted': fitted == 'Fitted'}
+               'fitted': fitted.startswith('Fitted')}
               for name, quantity, _type, category, fitted in matches]
     return result, bad_lines
 
@@ -172,7 +181,7 @@ def parse_manufacturing(paste_string):
     matches, bad_lines = regex_match_lines(MANUFACTURING_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': int(quantity),
+               'quantity': int(quantity or 1),
                'type': _type,
                'category': category,
                'info': info}

@@ -11,17 +11,23 @@ from evepaste.testing.tables.manufacturing import MANUFACTURING_TABLE
 import inspect
 
 
-def check_table(funct, input_str, expected):
-    if inspect.isclass(expected) and issubclass(expected, Exception):
-        try:
-            funct(input_str)
-        except expected:
-            pass
+class TableChecker(object):
+    """ This actually runs one named table test """
+    def __init__(self, funct, name):
+        self.funct = funct
+        self.description = name
+
+    def __call__(self, input_str, expected):
+        if inspect.isclass(expected) and issubclass(expected, Exception):
+            try:
+                self.funct(input_str)
+            except expected:
+                pass
+            else:
+                raise AssertionError('Exception %s not raised' % expected)
         else:
-            raise AssertionError('Exception %s not raised' % expected)
-    else:
-        result = funct(input_str)
-        assert result == expected, '''Unexpected result.
+            result = self.funct(input_str)
+            assert result == expected, '''Unexpected result.
 Expected: %s
 Actual: %s''' % (expected, result)
 
@@ -37,6 +43,6 @@ def test_generator():
                   BOM_TABLE,
                   MANUFACTURING_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
-            check_table.description = ('TableTest: %s[%s]'
-                                       % (str(table.funct.__name__), i))
-            yield check_table, table.funct, input_str, expected
+            name = ('TableTest: %s[%s]' % (str(table.funct.__name__), i))
+            checker = TableChecker(table.funct, name)
+            yield checker, input_str, expected

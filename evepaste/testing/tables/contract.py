@@ -27,4 +27,22 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
                            'type': 'Rig Shield',
                            'category': 'Module',
                            'fitted': True}], []))
+CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
+ Large Core Defense Field Extender I\t1\tRig Shield\tModule\tFitted
+ Scorch M\t1\tAdvanced Pulse Laser Crystal\tCharge\tFitted 72% damaged''',
+                        ([{'name': 'Rokh',
+                           'quantity': 1,
+                           'type': 'Battleship',
+                           'category': 'Ship',
+                           'fitted': False},
+                          {'name': 'Large Core Defense Field Extender I',
+                           'quantity': 1,
+                           'type': 'Rig Shield',
+                           'category': 'Module',
+                           'fitted': True},
+                          {'category': 'Charge',
+                           'type': 'Advanced Pulse Laser Crystal',
+                           'name': 'Scorch M',
+                           'quantity': 1,
+                           'fitted': True}], []))
 CONTRACT_TABLE.add_test('Rokh', ([], ['Rokh']))
