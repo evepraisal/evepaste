@@ -9,6 +9,12 @@ from evepaste.testing import TableTestGroup
 
 
 CONTRACT_TABLE = TableTestGroup(parse_contract)
+CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t''',
+                        ([{'name': 'Rokh',
+                           'quantity': 1,
+                           'type': 'Battleship',
+                           'category': 'Ship',
+                           'fitted': False}], []))
 CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
  Large Core Defense Field Extender I\t1\tRig Shield\tModule\tFitted''',
                         ([{'name': 'Rokh',
@@ -21,3 +27,4 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
                            'type': 'Rig Shield',
                            'category': 'Module',
                            'fitted': True}], []))
+CONTRACT_TABLE.add_test('Rokh', ([], ['Rokh']))
