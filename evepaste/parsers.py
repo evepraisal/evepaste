@@ -7,7 +7,7 @@ Various parsers for string input which is copy/pastable from Eve Online.
 import re
 
 from evepaste.exceptions import Unparsable
-from evepaste.utils import split_and_strip, regex_match_lines
+from evepaste.utils import split_and_strip, regex_match_lines, f_int
 
 CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ([\S ]+)$")
 HUMAN_LIST_RE = re.compile(r"^([\d ,]+)[x ]+([\S ]+)$")
@@ -22,10 +22,18 @@ DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)$")
 LOOT_HIST_RE = re.compile(
     r"(\d\d:\d\d:\d\d) ([\S ]+) has looted ([\d ,]+) x ([\S ]+)$")
 CONTRACT_RE = re.compile(r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
-ASSET_LIST_RE = re.compile(
-    r"^([\S ]*)\t([\d ,]+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)$")
+ASSET_LIST_RE = re.compile(r"""^([\S ]*)                   # name
+                               (\t([\d ,]+))?              # quantity
+                               (\t([\S ]*))?               # group
+                               (\t([\S ]*))?               # category
+                               (\t(Large|Medium|Small|))?  # size
+                               (\t(High|Medium|Low|))?     # slot
+                               (\t([\S ]* m3))?            # volume
+                               (\t([\d]*))?                # meta level
+                               (\t([\d])*)?$               # tech level
+                               """, re.X)
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
-BOM_RE2 = re.compile(r"^([\S ]+) \[([\d ,]+)\]$")
+BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
 MANUFACTURING_RE = re.compile(
     r"^([\S ]*)\t([\d ,]*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
 
@@ -38,7 +46,7 @@ def parse_cargo_scan(paste_string):
     """
     paste_lines = split_and_strip(paste_string)
     matches, bad_lines = regex_match_lines(CARGO_SCAN_RE, paste_lines)
-    result = [{'name': name, 'quantity': int(count)}
+    result = [{'name': name, 'quantity': f_int(count)}
               for count, name in matches]
     return result, bad_lines
 
@@ -53,9 +61,9 @@ def parse_human_listing(paste_string):
     matches2, bad_lines2 = regex_match_lines(HUMAN_LIST_RE2, bad_lines)
 
     result = ([{'name': name,
-                'quantity': int(count or 1)} for count, name in matches] +
+                'quantity': f_int(count or 1)} for count, name in matches] +
               [{'name': name,
-                'quantity': int(count or 1)} for name, count in matches2] +
+                'quantity': f_int(count or 1)} for name, count in matches2] +
               [{'name': name, 'quantity': 1} for name in bad_lines2])
 
     return result, []
@@ -123,7 +131,7 @@ def parse_loot_history(paste_string):
 
     result = [{'time': time,
                'player_name': player_name,
-               'quantity': int(quantity),
+               'quantity': f_int(quantity),
                'name': name}
               for time, player_name, quantity, name in matches]
     return result, bad_lines
@@ -138,7 +146,7 @@ def parse_contract(paste_string):
     matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': int(quantity or 1),
+               'quantity': f_int(quantity or 1),
                'type': _type,
                'category': category,
                'info': info,
@@ -156,12 +164,23 @@ def parse_asset_list(paste_string):
     matches, bad_lines = regex_match_lines(ASSET_LIST_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': int(quantity),
+               'quantity': f_int(quantity),
                'group': group,
+               'category': category,
                'size': size,
                'slot': slot,
-               'volume': volume}
-              for name, quantity, group, size, slot, volume in matches]
+               'volume': volume,
+               'meta_level': meta_level,
+               'tech_level': tech_level}
+              for (name,
+                   _, quantity,
+                   _, group,
+                   _, category,
+                   _, size,
+                   _, slot,
+                   _, volume,
+                   _, meta_level,
+                   _, tech_level) in matches]
     return result, bad_lines
 
 
@@ -175,11 +194,11 @@ def parse_bill_of_materials(paste_string):
     matches2, bad_lines2 = regex_match_lines(BOM_RE2, bad_lines)
 
     result = [{'name': name,
-               'you': int(you),
-               'perfect': int(perfect)}
+               'you': f_int(you),
+               'perfect': f_int(perfect)}
               for name, you, perfect in matches]
     result2 = [{'name': name,
-                'quantity': int(quantity)}
+                'quantity': f_int(quantity)}
                for name, quantity in matches2]
     return result + result2, bad_lines2
 
@@ -193,7 +212,7 @@ def parse_manufacturing(paste_string):
     matches, bad_lines = regex_match_lines(MANUFACTURING_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': int(quantity or 1),
+               'quantity': f_int(quantity or 1),
                'type': _type,
                'category': category,
                'info': info}

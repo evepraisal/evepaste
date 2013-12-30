@@ -35,3 +35,9 @@ def regex_match_lines(regex, lines):
         else:
             bad_lines.append(line)
     return matches, bad_lines
+
+
+def f_int(num):
+    if num is None:
+        return None
+    return int(num.replace(',', '').replace(' ', ''))
