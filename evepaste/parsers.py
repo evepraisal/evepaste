@@ -19,6 +19,7 @@ EFT_BLACKLIST = ['[empty high slot]',
 DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)")
 LOOT_HIST_RE = re.compile(
     r"(\d\d:\d\d:\d\d) ([\S ]+) has looted (\d+) x ([\S ]+)")
+CONTRACT_RE = re.compile(r"^([\S ]+)\t([\d]+)\t([\S ]*)\t([\S ]*)\t?(Fitted|)")
 
 
 def parse_cargo_scan(paste_string):
@@ -87,7 +88,7 @@ def parse_dscan(paste_string):
 
 
 def parse_loot_history(paste_string):
-    """ Parse D-Scan format
+    """ Parse loot history format
 
     :param string paste_string: A loot history result string
     """
@@ -101,9 +102,22 @@ def parse_loot_history(paste_string):
               for time, player_name, quantity, name in matches]
     return result, bad_lines
 
-# TODO: Contracts
+
+# Item Name\tCount\tCategory\tFitted
+def parse_contract(paste_string):
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
+
+    result = [{'name': name,
+               'quantity': int(quantity),
+               'type': _type,
+               'category': category,
+               'fitted': fitted == 'Fitted'}
+              for name, quantity, _type, category, fitted in matches]
+    return result, bad_lines
+
+
 # TODO: Manufactoring
 # TODO: Assets
 # TODO: Inventory
 # TODO: Bill of Materials
-# TODO: Loot history

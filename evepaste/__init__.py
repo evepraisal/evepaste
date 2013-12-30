@@ -8,12 +8,14 @@ from evepaste.parsers import (parse_cargo_scan,
                               parse_human_listing,
                               parse_eft,
                               parse_dscan,
-                              parse_loot_history)
+                              parse_loot_history,
+                              parse_contract)
 
 __all__ = ['parse_cargo_scan',
            'parse_human_listing',
            'parse_eft',
            'parse_dscan',
-           'parse_loot_history']
+           'parse_loot_history',
+           'parse_contract']
 
 __version__ = '0.1'
