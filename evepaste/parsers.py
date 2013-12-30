@@ -73,15 +73,19 @@ def parse_eft(paste_string):
         raise Unparsable('Invalid EFT title line')
 
     ship, eft_name = title_parts
-    # Match "Module"
-    matches, bad_lines = regex_match_lines(EFT_LIST_RE, paste_lines[1:])
-    # Match "Module, Ammo"
-    matches2, bad_lines2 = regex_match_lines(EFT_LIST_RE2,
-                                             [r[0] for r in matches])
+    modules = []
 
-    modules = [{'name': res} for res in bad_lines2]
-    for module, ammo in matches2:
+    # Match "Module, Ammo"
+    matches, bad_lines = regex_match_lines(EFT_LIST_RE2, paste_lines[1:])
+
+    for module, ammo in matches:
         modules.append({'name': module, 'ammo': ammo})
+
+    # Match "Module"
+    matches, bad_lines = regex_match_lines(EFT_LIST_RE, bad_lines)
+
+    for res in matches:
+        modules.append({'name': res[0]})
 
     result = {'ship': ship.strip(),
               'name': eft_name.strip(),

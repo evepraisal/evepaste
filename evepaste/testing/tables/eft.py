@@ -24,15 +24,15 @@ Warp Disruptor I
 [empty high slot]''', ({
     'ship': 'Rifter',
     'name': 'Fleet Tackle',
-    'modules': [{'name': 'Nanofiber Internal Structure I'},
+    'modules': [{'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
+                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
+                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
+                {'name': 'Nanofiber Internal Structure I'},
                 {'name': 'Nanofiber Internal Structure I'},
                 {'name': 'Overdrive Injector System I'},
                 {'name': 'Stasis Webifier I'},
                 {'name': 'Warp Disruptor I'},
-                {'name': '1MN Microwarpdrive I'},
-                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'}]
+                {'name': '1MN Microwarpdrive I'}]
     }, []))
 EFT_TABLE.add_test('''
 [Apocalypse, Pimpin' Sniper Fit]
@@ -57,7 +57,19 @@ Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L''', ({
-    'modules': [{'name': 'Heat Sink II'},
+    'modules': [{'name': 'Sensor Booster II',
+                 'ammo': 'Targeting Range Script'},
+                {'name': 'Sensor Booster II',
+                 'ammo': 'Targeting Range Script'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
+                {'name': 'Heat Sink II'},
                 {'name': 'Heat Sink II'},
                 {'name': 'Heat Sink II'},
                 {'name': 'Tracking Enhancer II'},
@@ -65,19 +77,7 @@ Tachyon Beam Laser II, Aurora L''', ({
                 {'name': 'Reactor Control Unit II'},
                 {'name': 'Beta Reactor Control: Reaction Control I'},
                 {'name': '100MN Microwarpdrive I'},
-                {'name': 'F-90 Positional Sensor Subroutines'},
-                {'name': 'Sensor Booster II',
-                 'ammo': 'Targeting Range Script'},
-                {'name': 'Sensor Booster II',
-                 'ammo': 'Targeting Range Script'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'}],
+                {'name': 'F-90 Positional Sensor Subroutines'}],
     'ship': 'Apocalypse',
     'name': "Pimpin' Sniper Fit"}, []))
 EFT_TABLE.add_test('[Rifter,test]',
