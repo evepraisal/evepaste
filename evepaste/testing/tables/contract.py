@@ -9,7 +9,7 @@ from evepaste.testing import TableTestGroup
 
 
 CONTRACT_TABLE = TableTestGroup(parse_contract)
-CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t''',
+CONTRACT_TABLE.add_test('Rokh\t1\tBattleship\tShip\t',
                         ([{'name': 'Rokh',
                            'quantity': 1,
                            'type': 'Battleship',

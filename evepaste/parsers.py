@@ -20,6 +20,8 @@ DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)")
 LOOT_HIST_RE = re.compile(
     r"(\d\d:\d\d:\d\d) ([\S ]+) has looted (\d+) x ([\S ]+)")
 CONTRACT_RE = re.compile(r"^([\S ]+)\t([\d]+)\t([\S ]*)\t([\S ]*)\t?(Fitted|)")
+ASSET_LIST_RE = re.compile(
+    r"^([\S ]*)\t([\d]+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)")
 
 
 def parse_cargo_scan(paste_string):
@@ -103,8 +105,11 @@ def parse_loot_history(paste_string):
     return result, bad_lines
 
 
-# Item Name\tCount\tCategory\tFitted
 def parse_contract(paste_string):
+    """ Parse contract format
+
+    :param string paste_string: A contract result string
+    """
     paste_lines = split_and_strip(paste_string)
     matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
 
@@ -117,7 +122,24 @@ def parse_contract(paste_string):
     return result, bad_lines
 
 
+def parse_asset_list(paste_string):
+    """ Parse asset list
+
+    :param string paste_string: An asset list string
+    """
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(ASSET_LIST_RE, paste_lines)
+
+    result = [{'name': name,
+               'quantity': int(quantity),
+               'group': group,
+               'size': size,
+               'slot': slot,
+               'volume': volume}
+              for name, quantity, group, size, slot, volume in matches]
+    return result, bad_lines
+
+
 # TODO: Manufactoring
-# TODO: Assets
 # TODO: Inventory
 # TODO: Bill of Materials

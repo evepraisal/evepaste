@@ -4,6 +4,7 @@ from evepaste.testing.tables.eft import EFT_TABLE
 from evepaste.testing.tables.dscan import DSCAN_TABLE
 from evepaste.testing.tables.loot_history import LOOT_HISTORY_TABLE
 from evepaste.testing.tables.contract import CONTRACT_TABLE
+from evepaste.testing.tables.assets import ASSET_TABLE
 
 import inspect
 
@@ -29,7 +30,8 @@ def test_generator():
                   EFT_TABLE,
                   DSCAN_TABLE,
                   LOOT_HISTORY_TABLE,
-                  CONTRACT_TABLE]:
+                  CONTRACT_TABLE,
+                  ASSET_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             check_table.description = ('TableTest: %s[%s]'
                                        % (str(table.funct.__name__), i))
