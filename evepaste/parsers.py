@@ -24,6 +24,8 @@ ASSET_LIST_RE = re.compile(
     r"^([\S ]*)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)")
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]")
 BOM_RE2 = re.compile(r"^([\S ]+) \[(\d+)\]")
+MANUFACTURING_RE = re.compile(
+    r"^([\S ]+)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)")
 
 
 def parse_cargo_scan(paste_string):
@@ -160,4 +162,19 @@ def parse_bill_of_materials(paste_string):
                for name, quantity in matches2]
     return result + result2, bad_lines2
 
-# TODO: Manufactoring
+
+def parse_manufacturing(paste_string):
+    """ Parse manufacturing list
+
+    :param string paste_string: A manufacturing list string
+    """
+    paste_lines = split_and_strip(paste_string)
+    matches, bad_lines = regex_match_lines(MANUFACTURING_RE, paste_lines)
+
+    result = [{'name': name,
+               'quantity': int(quantity),
+               'type': _type,
+               'category': category,
+               'info': info}
+              for name, quantity, _type, category, info in matches]
+    return result, bad_lines

@@ -11,7 +11,8 @@ from evepaste.parsers import (parse_cargo_scan,
                               parse_loot_history,
                               parse_contract,
                               parse_asset_list,
-                              parse_bill_of_materials)
+                              parse_bill_of_materials,
+                              parse_manufacturing)
 
 __all__ = ['parse_cargo_scan',
            'parse_human_listing',
@@ -20,6 +21,7 @@ __all__ = ['parse_cargo_scan',
            'parse_loot_history',
            'parse_contract',
            'parse_asset_list',
-           'parse_bill_of_materials']
+           'parse_bill_of_materials',
+           'parse_manufacturing']
 
 __version__ = '0.1'
