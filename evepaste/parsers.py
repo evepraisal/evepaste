@@ -130,8 +130,9 @@ def parse_contract(paste_string):
                'quantity': int(quantity or 1),
                'type': _type,
                'category': category,
-               'fitted': fitted.startswith('Fitted')}
-              for name, quantity, _type, category, fitted in matches]
+               'info': info,
+               'fitted': info.startswith('Fitted')}
+              for name, quantity, _type, category, info in matches]
     return result, bad_lines
 
 
