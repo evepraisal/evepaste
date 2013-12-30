@@ -9,8 +9,9 @@ import re
 from evepaste.exceptions import Unparsable
 from evepaste.utils import split_and_strip, regex_match_lines
 
-CARGO_SCAN_RE = re.compile(r"^(\d+) ([\S ]+)$")
-HUMAN_LIST_RE = re.compile(r"^(\d+)?[x ]*([\S ]+)")
+CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ([\S ]+)$")
+HUMAN_LIST_RE = re.compile(r"^([\d ,]+)[x ]+([\S ]+)$")
+HUMAN_LIST_RE2 = re.compile(r"^([\S ]+) x ?([\d ,]+)$")
 EFT_LIST_RE = re.compile(r"^([\S ]+)$")
 EFT_LIST_RE2 = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
@@ -19,14 +20,14 @@ EFT_BLACKLIST = ['[empty high slot]',
                  '[empty rig slot]']
 DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)$")
 LOOT_HIST_RE = re.compile(
-    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted (\d+) x ([\S ]+)$")
+    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted ([\d ,]+) x ([\S ]+)$")
 CONTRACT_RE = re.compile(r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
 ASSET_LIST_RE = re.compile(
-    r"^([\S ]*)\t(\d+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)$")
+    r"^([\S ]*)\t([\d ,]+)\t([\S ]*)\t([\S ]*)\t([\S ]*)\t([\S ,]*)$")
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
-BOM_RE2 = re.compile(r"^([\S ]+) \[(\d+)\]$")
+BOM_RE2 = re.compile(r"^([\S ]+) \[([\d ,]+)\]$")
 MANUFACTURING_RE = re.compile(
-    r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
+    r"^([\S ]*)\t([\d ,]*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
 
 
 def parse_cargo_scan(paste_string):
@@ -49,9 +50,15 @@ def parse_human_listing(paste_string):
     """
     paste_lines = split_and_strip(paste_string)
     matches, bad_lines = regex_match_lines(HUMAN_LIST_RE, paste_lines)
-    result = [{'name': name, 'quantity': int(count or 1)}
-              for count, name in matches]
-    return result, bad_lines
+    matches2, bad_lines2 = regex_match_lines(HUMAN_LIST_RE2, bad_lines)
+
+    result = ([{'name': name,
+                'quantity': int(count or 1)} for count, name in matches] +
+              [{'name': name,
+                'quantity': int(count or 1)} for name, count in matches2] +
+              [{'name': name, 'quantity': 1} for name in bad_lines2])
+
+    return result, []
 
 
 def parse_eft(paste_string):
