@@ -12,6 +12,13 @@ from evepaste.utils import split_and_strip, regex_match_lines, f_int
 CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ([\S ]+)$")
 HUMAN_LIST_RE = re.compile(r"^([\d ,]+)[x ]+([\S ]+)$")
 HUMAN_LIST_RE2 = re.compile(r"^([\S ]+) x ?([\d ,]+)$")
+FITTING_BLACKLIST = ['High power',
+                     'Medium power',
+                     'Low power',
+                     'Rig Slot',
+                     'Sub System',
+                     'Charges',
+                     'Drones']
 EFT_LIST_RE = re.compile(r"^([\S ]+)$")
 EFT_LIST_RE2 = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
@@ -29,8 +36,8 @@ ASSET_LIST_RE = re.compile(r"""^([\S ]*)                   # name
                                (\t(Large|Medium|Small|))?  # size
                                (\t(High|Medium|Low|))?     # slot
                                (\t([\S ]* m3))?            # volume
-                               (\t([\d]*))?                # meta level
-                               (\t([\d])*)?$               # tech level
+                               (\t([\d]+|))?                # meta level
+                               (\t([\d])+|)?$               # tech level
                                """, re.X)
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
@@ -67,6 +74,16 @@ def parse_human_listing(paste_string):
               [{'name': name, 'quantity': 1} for name in bad_lines2])
 
     return result, []
+
+
+def parse_fitting_listing(paste_string):
+    paste_lines = split_and_strip(paste_string)
+
+    for item in FITTING_BLACKLIST:
+        if item in paste_lines:
+            paste_lines.remove(item)
+
+    return parse_human_listing('\n'.join(paste_lines))
 
 
 def parse_eft(paste_string):
