@@ -10,31 +10,26 @@ from evepaste.testing.tables.bill_of_materials import BOM_TABLE
 from evepaste.testing.tables.parse import PARSE_TABLE
 
 import inspect
-import pprint
+import unittest
 
 
-class TableChecker(object):
+class TableChecker(unittest.TestCase):
     """ This actually runs one named table test """
     def __init__(self, funct, name):
+        unittest.TestCase.__init__(self, '__call__')
         self.funct = funct
         self.description = name
 
     def __call__(self, input_str, expected):
         if inspect.isclass(expected) and issubclass(expected, Exception):
-            try:
-                self.funct(input_str)
-            except expected:
-                pass
-            else:
-                raise AssertionError('Exception %s not raised' % expected)
+            self.assertRaises(expected, self.funct, input_str)
         else:
             result = self.funct(input_str)
-            assert result == expected, '''Unexpected result.
-Expected: %s
-Actual: %s''' % (pprint.pformat(expected), pprint.pformat(result))
+            self.assertEqual(result, expected)
 
 
 def test_generator():
+    # Perform each table test with their associated callable
     for table in [CARGO_SCAN_TABLE,
                   FITTING_TABLE,
                   EFT_TABLE,
@@ -49,6 +44,7 @@ def test_generator():
             checker = TableChecker(table.funct, name)
             yield checker, input_str, expected
 
+    # Perform each table test with parse() instead of the associated callable
     for table in [CARGO_SCAN_TABLE,
                   FITTING_TABLE,
                   EFT_TABLE,
