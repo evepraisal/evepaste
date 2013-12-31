@@ -11,7 +11,7 @@ from evepaste.utils import split_and_strip, regex_match_lines, f_int
 
 # 10 x Cargo Scanner II | 10x Cargo Scanner II | 10 Cargo Scanner II
 LISTING_RE = re.compile(r"^([\d ,]+) ?x? ([\w ]+)$")
-# Cargo Scanner II x10 | Cargo Scanner II 10
+# Cargo Scanner II x10 | Cargo Scanner II x 10
 LISTING_RE2 = re.compile(r"^([\w ]+) x ?([\d ,]+)$")
 
 
