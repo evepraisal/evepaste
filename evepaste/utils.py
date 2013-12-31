@@ -38,6 +38,10 @@ def regex_match_lines(regex, lines):
 
 
 def f_int(num):
+    """ Converts a given numeric string into an integer
+
+    :param string num: A string of the format "123,456", "123 456" or "123456"
+    """
     if num is None:
         return None
     return int(num.replace(',', '').replace(' ', ''))
