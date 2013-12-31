@@ -1,12 +1,12 @@
 """
-evepaste.testing.tables.eft
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.eft
+~~~~~~~~~~~~~~~~~
 EFT table tests
 
 """
 from evepaste import parse_eft
 from evepaste.exceptions import Unparsable
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 EFT_TABLE = TableTestGroup(parse_eft)
 EFT_TABLE.add_test('''[Rifter, Fleet Tackle]

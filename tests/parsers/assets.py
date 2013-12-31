@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.assets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.assets
+~~~~~~~~~~~~~~~~~~~~
 Asset list table tests
 
 """
 from evepaste import parse_assets
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 ASSET_TABLE = TableTestGroup(parse_assets)

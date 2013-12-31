@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.bill_of_material
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.bill_of_material
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Asset list table tests
 
 """
 from evepaste import parse_bill_of_materials
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 BOM_TABLE = TableTestGroup(parse_bill_of_materials)

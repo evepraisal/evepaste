@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.contract
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.contract
+~~~~~~~~~~~~~~~~~~~~~~
 Contract table tests
 
 """
 from evepaste import parse_contract
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 CONTRACT_TABLE = TableTestGroup(parse_contract)

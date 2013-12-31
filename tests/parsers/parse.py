@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.parse
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.parse
+~~~~~~~~~~~~~~~~~~~
 Parse table tests
 
 """
 from evepaste import parse, Unparsable
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 PARSE_TABLE = TableTestGroup(parse)

@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.loot_history
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.loot_history
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Loot history table tests
 
 """
 from evepaste import parse_loot_history
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 LOOT_HISTORY_TABLE = TableTestGroup(parse_loot_history)

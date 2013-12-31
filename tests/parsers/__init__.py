@@ -1,0 +1,25 @@
+"""
+evepaste.tests.parsers
+~~~~~~~~~~~~~~~~~~~~~~
+Contains all the table-based tests for evepaste
+
+"""
+from tests.parsers.assets import ASSET_TABLE
+from tests.parsers.bill_of_materials import BOM_TABLE
+from tests.parsers.contract import CONTRACT_TABLE
+from tests.parsers.dscan import DSCAN_TABLE
+from tests.parsers.eft import EFT_TABLE
+from tests.parsers.fitting import FITTING_TABLE
+from tests.parsers.listing import LISTING_TABLE
+from tests.parsers.loot_history import LOOT_HISTORY_TABLE
+from tests.parsers.parse import PARSE_TABLE
+
+__all__ = ['ASSET_TABLE',
+           'BOM_TABLE',
+           'CONTRACT_TABLE',
+           'DSCAN_TABLE',
+           'EFT_TABLE',
+           'FITTING_TABLE',
+           'LISTING_TABLE',
+           'LOOT_HISTORY_TABLE',
+           'PARSE_TABLE']

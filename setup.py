@@ -30,7 +30,7 @@ setup(
     long_description=long_description,
     author='Kevin McDonald',
     author_email='k3vinmcdonald@gmail.com',
-    packages=['evepaste'],
+    packages=['evepaste', 'evepaste.parsers'],
     license='MIT',
     zip_safe=False,
     test_suite='nose.collector',

@@ -1,9 +1,27 @@
 """
-evepaste.testing
-~~~~~~~~~~~~~~~~
-Utilities and re-usable helper functions for evepaste
+tests
+~~~~~
+Tests and test helpers for evepaste
 
 """
+
+import inspect
+import unittest
+
+
+class TableChecker(unittest.TestCase):
+    """ This actually runs one named table test """
+    def __init__(self, funct, name):
+        unittest.TestCase.__init__(self, 'run')
+        self.funct = funct
+        self.description = name
+
+    def run(self, input_str, expected):
+        if inspect.isclass(expected) and issubclass(expected, Exception):
+            self.assertRaises(expected, self.funct, input_str)
+        else:
+            result = self.funct(input_str)
+            self.assertEqual(result, expected)
 
 
 class TableTestGroup(object):

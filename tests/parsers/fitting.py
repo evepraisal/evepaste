@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.fitting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.fitting
+~~~~~~~~~~~~~~~~~~~~~
 Fitting listing table tests
 
 """
 from evepaste import parse_fitting
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 FITTING_TABLE = TableTestGroup(parse_fitting)

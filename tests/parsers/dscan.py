@@ -1,11 +1,11 @@
 """
-evepaste.testing.tables.dscan
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests.parsers.dscan
+~~~~~~~~~~~~~~~~~~~
 D-Scan table tests
 
 """
 from evepaste import parse_dscan
-from evepaste.testing import TableTestGroup
+from tests import TableTestGroup
 
 
 DSCAN_TABLE = TableTestGroup(parse_dscan)
