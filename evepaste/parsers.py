@@ -19,8 +19,7 @@ FITTING_BLACKLIST = ['High power',
                      'Sub System',
                      'Charges',
                      'Drones']
-EFT_LIST_RE = re.compile(r"^([\S ]+)$")
-EFT_LIST_RE2 = re.compile(r"^([\S ]+), ?([\S ]+)$")
+EFT_LIST_RE = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
                  '[empty low slot]',
                  '[empty medium slot]',
@@ -125,21 +124,18 @@ def parse_eft(paste_string):
     modules = []
 
     # Match "Module, Ammo"
-    matches, bad_lines = regex_match_lines(EFT_LIST_RE2, paste_lines[1:])
+    matches, bad_lines = regex_match_lines(EFT_LIST_RE, paste_lines[1:])
 
     for module, ammo in matches:
         modules.append({'name': module, 'ammo': ammo})
 
-    # Match "Module"
-    matches, bad_lines = regex_match_lines(EFT_LIST_RE, bad_lines)
-
-    for res in matches:
-        modules.append({'name': res[0]})
+    for line in bad_lines:
+        modules.append({'name': line})
 
     result = {'ship': ship.strip(),
               'name': eft_name.strip(),
               'modules': [res for res in modules]}
-    return result, bad_lines
+    return result, []
 
 
 def parse_dscan(paste_string):
