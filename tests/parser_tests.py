@@ -33,6 +33,4 @@ def test_generator():
                 checker = TableChecker(parse, name)
                 result, bad_lines = expected
                 _type = table.funct.__name__.split('_', 1)[1]
-                yield checker, input_str, {'type': _type,
-                                           'result': result,
-                                           'bad_lines': bad_lines}
+                yield checker, input_str, (_type, result, bad_lines)

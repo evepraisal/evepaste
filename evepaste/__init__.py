@@ -7,9 +7,7 @@ Usage:
 
     >>> import evepaste
     >>> evepaste.parse('10 Cargo Scanner II')
-    {'bad_lines': [],
-     'result': [{'name': 'Cargo Scanner II', 'quantity': 10}],
-     'type': 'listing'}
+    ('listing', [{'name': 'Cargo Scanner II', 'quantity': 10}], [])
 
     >>> evepaste.parse('''[Rifter, Fleet Tackle]
     ... Nanofiber Internal Structure I
@@ -24,19 +22,19 @@ Usage:
     ... 200mm AutoCannon I, EMP S
     ... 200mm AutoCannon I, EMP S
     ... [empty high slot]''')
-    {'bad_lines': [],
-     'result': {'modules': [{'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
-                            {'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
-                            {'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
-                            {'name': 'Nanofiber Internal Structure I'},
-                            {'name': 'Nanofiber Internal Structure I'},
-                            {'name': 'Overdrive Injector System I'},
-                            {'name': 'Stasis Webifier I'},
-                            {'name': 'Warp Disruptor I'},
-                            {'name': '1MN Microwarpdrive I'}],
-                'name': 'Fleet Tackle',
-                'ship': 'Rifter'},
-     'type': 'eft'}
+    ('eft',
+     {'modules': [{'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
+                  {'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
+                  {'ammo': 'EMP S', 'name': '200mm AutoCannon I'},
+                  {'name': 'Nanofiber Internal Structure I'},
+                  {'name': 'Nanofiber Internal Structure I'},
+                  {'name': 'Overdrive Injector System I'},
+                  {'name': 'Stasis Webifier I'},
+                  {'name': 'Warp Disruptor I'},
+                  {'name': '1MN Microwarpdrive I'}],
+      'name': 'Fleet Tackle',
+      'ship': 'Rifter'},
+     [])
 """
 from evepaste import parsers
 from evepaste.exceptions import Unparsable
@@ -79,9 +77,7 @@ def parse(paste_string):
             try:
                 result, bad_lines = parser(lines)
                 if checker(result, bad_lines):
-                    return {'type': name,
-                            'result': result,
-                            'bad_lines': bad_lines}
+                    return (name, result, bad_lines)
             except Unparsable:
                 pass
 
