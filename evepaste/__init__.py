@@ -38,35 +38,44 @@ Usage:
                 'ship': 'Rifter'},
      'type': 'eft'}
 """
-
-from evepaste.parsers.assets import parse_assets
-from evepaste.parsers.bill_of_materials import parse_bill_of_materials
-from evepaste.parsers.contract import parse_contract
-from evepaste.parsers.dscan import parse_dscan
-from evepaste.parsers.eft import parse_eft
-from evepaste.parsers.fitting import parse_fitting
-from evepaste.parsers.listing import parse_listing
-from evepaste.parsers.loot_history import parse_loot_history
-
+from evepaste import parsers
 from evepaste.exceptions import Unparsable
+from evepaste.utils import split_and_strip, unpack_string
+
+
+# Add the ability for each supported parser take a string instead of a list of
+# strings.
+parse_assets = unpack_string(parsers.parse_assets)
+parse_bill_of_materials = unpack_string(parsers.parse_bill_of_materials)
+parse_contract = unpack_string(parsers.parse_contract)
+parse_dscan = unpack_string(parsers.parse_dscan)
+parse_eft = unpack_string(parsers.parse_eft)
+parse_fitting = unpack_string(parsers.parse_fitting)
+parse_listing = unpack_string(parsers.parse_listing)
+parse_loot_history = unpack_string(parsers.parse_loot_history)
 
 
 def parse(paste_string):
-    """ Tries out a series a parsers on a peice of text. This will return the
+    """ Tries out a series of parsers on a peice of text. This will return the
         first result with no errored lines. This should only be used if the
         format of paste_string is unknown. If it is known it is best to use the
         specific parser for the input.
+
+    :param str paste_string: A string of text pasted from somewhere in
+                             Eve Online.
     """
-    for name, parser in (('bill_of_materials', parse_bill_of_materials),
-                         ('loot_history', parse_loot_history),
-                         ('dscan', parse_dscan),
-                         ('eft', parse_eft),
-                         ('fitting', parse_fitting),
-                         ('contract', parse_contract),
-                         ('assets', parse_assets),
-                         ('listing', parse_listing)):
+    lines = split_and_strip(paste_string)
+    for name, parser in (('bill_of_materials',
+                          parsers.parse_bill_of_materials),
+                         ('loot_history', parsers.parse_loot_history),
+                         ('dscan', parsers.parse_dscan),
+                         ('eft', parsers.parse_eft),
+                         ('fitting', parsers.parse_fitting),
+                         ('contract', parsers.parse_contract),
+                         ('assets', parsers.parse_assets),
+                         ('listing', parsers.parse_listing)):
         try:
-            result, bad_lines = parser(paste_string)
+            result, bad_lines = parser(lines)
             if result and not bad_lines:
                 return {'type': name,
                         'result': result,
@@ -74,10 +83,11 @@ def parse(paste_string):
         except Unparsable:
             pass
 
-    raise Unparsable('No parser')
+    raise Unparsable('No valid parser found for the given text.')
 
 
 __all__ = ['parse',
+           'Unparsable',
            'parse_assets',
            'parse_bill_of_materials',
            'parse_contract',

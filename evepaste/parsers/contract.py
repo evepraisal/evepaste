@@ -6,7 +6,7 @@ Parse Contracts.
 """
 import re
 
-from evepaste.utils import split_and_strip, regex_match_lines, f_int
+from evepaste.utils import regex_match_lines, f_int
 
 
 CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
@@ -17,13 +17,12 @@ CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
                               """, re.X)
 
 
-def parse_contract(paste_string):
+def parse_contract(lines):
     """ Parse contract format
 
     :param string paste_string: A contract result string
     """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
+    matches, bad_lines = regex_match_lines(CONTRACT_RE, lines)
 
     result = [{'name': name,
                'quantity': f_int(quantity or '1'),

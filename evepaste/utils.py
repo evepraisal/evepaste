@@ -4,6 +4,7 @@ evepaste.utils
 Utilities and re-usable helper functions for evepaste
 
 """
+from functools import wraps
 
 
 def split_and_strip(string):
@@ -43,3 +44,16 @@ def f_int(num):
     :param string num: A string of the format "123,456", "123 456" or "123456"
     """
     return int(num.replace(',', '').replace(' ', ''))
+
+
+def unpack_string(funct):
+    """ This allows parsers to be passed a single string instead of a list of
+        strings. The raw parsers take in a list of strings. This is to enable
+        the ability to parse input that is of multiple types by chaining
+        bad_lines into multiple parsers.
+    """
+    @wraps(funct)
+    def wrapper(paste_string):
+        return funct(split_and_strip(paste_string))
+
+    return wrapper

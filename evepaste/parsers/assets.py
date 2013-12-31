@@ -6,7 +6,7 @@ Parse eve online asset lists. This also invludes inventory listings.
 """
 import re
 
-from evepaste.utils import split_and_strip, regex_match_lines, f_int
+from evepaste.utils import regex_match_lines, f_int
 
 ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
                                 \t([\d ,]*)                 # quantity
@@ -20,13 +20,12 @@ ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
                                """, re.X)
 
 
-def parse_assets(paste_string):
+def parse_assets(lines):
     """ Parse asset list
 
     :param string paste_string: An asset list string
     """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(ASSET_LIST_RE, paste_lines)
+    matches, bad_lines = regex_match_lines(ASSET_LIST_RE, lines)
 
     result = [{'name': name,
                'quantity': f_int(quantity or '1'),

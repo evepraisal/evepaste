@@ -6,7 +6,7 @@ Parse d-scan results.
 """
 import re
 
-from evepaste.utils import split_and_strip, regex_match_lines
+from evepaste.utils import regex_match_lines
 
 
 DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t  # name
@@ -15,13 +15,12 @@ DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t  # name
                                 """, re.X)
 
 
-def parse_dscan(paste_string):
+def parse_dscan(lines):
     """ Parse D-Scan format
 
     :param string paste_string: A D-Scan result string
     """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(DSCAN_LIST_RE, paste_lines)
+    matches, bad_lines = regex_match_lines(DSCAN_LIST_RE, lines)
 
     result = [{'name': name, 'type': _type, 'distance': distance}
               for name, _type, distance in matches]

@@ -6,19 +6,18 @@ Parse Bill of Materials.
 """
 import re
 
-from evepaste.utils import split_and_strip, regex_match_lines, f_int
+from evepaste.utils import regex_match_lines, f_int
 
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
 
 
-def parse_bill_of_materials(paste_string):
+def parse_bill_of_materials(lines):
     """ Parse bill of materials
 
     :param string paste_string: A bill of material string
     """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(BOM_RE, paste_lines)
+    matches, bad_lines = regex_match_lines(BOM_RE, lines)
     matches2, bad_lines2 = regex_match_lines(BOM_RE2, bad_lines)
 
     result = [{'name': name,
