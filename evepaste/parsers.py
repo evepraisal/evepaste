@@ -54,7 +54,7 @@ MANUFACTURING_RE = re.compile(r"""^([\S ]*)\t   # name
                                    ([\S ]*)\t   # type
                                    ([\S ]*)\t   # category
                                    ([\S ]*)$    # info
-                                   """)
+                                   """, re.X)
 
 
 def parse_cargo_scan(paste_string):
