@@ -65,23 +65,25 @@ def parse(paste_string):
                              Eve Online.
     """
     lines = split_and_strip(paste_string)
-    for name, parser in (('bill_of_materials',
-                          parsers.parse_bill_of_materials),
-                         ('loot_history', parsers.parse_loot_history),
-                         ('dscan', parsers.parse_dscan),
-                         ('eft', parsers.parse_eft),
-                         ('fitting', parsers.parse_fitting),
-                         ('contract', parsers.parse_contract),
-                         ('assets', parsers.parse_assets),
-                         ('listing', parsers.parse_listing)):
-        try:
-            result, bad_lines = parser(lines)
-            if result and not bad_lines:
-                return {'type': name,
-                        'result': result,
-                        'bad_lines': bad_lines}
-        except Unparsable:
-            pass
+    for checker in (lambda res, bad_lines: result and not bad_lines,
+                    lambda res, bad_lines: result):
+        for name, parser in (('bill_of_materials',
+                              parsers.parse_bill_of_materials),
+                             ('loot_history', parsers.parse_loot_history),
+                             ('dscan', parsers.parse_dscan),
+                             ('eft', parsers.parse_eft),
+                             ('fitting', parsers.parse_fitting),
+                             ('contract', parsers.parse_contract),
+                             ('assets', parsers.parse_assets),
+                             ('listing', parsers.parse_listing)):
+            try:
+                result, bad_lines = parser(lines)
+                if checker(result, bad_lines):
+                    return {'type': name,
+                            'result': result,
+                            'bad_lines': bad_lines}
+            except Unparsable:
+                pass
 
     raise Unparsable('No valid parser found for the given text.')
 

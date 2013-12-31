@@ -10,9 +10,11 @@ from evepaste.utils import regex_match_lines, f_int
 
 
 # 10 x Cargo Scanner II | 10x Cargo Scanner II | 10 Cargo Scanner II
-LISTING_RE = re.compile(r"^([\d ,]+) ?x? ([\w ]+)$")
+LISTING_RE = re.compile(r"^([\d ,]+) ?x? ([\S ]+)$")
 # Cargo Scanner II x10 | Cargo Scanner II x 10
-LISTING_RE2 = re.compile(r"^([\w ]+) x ?([\d ,]+)$")
+LISTING_RE2 = re.compile(r"^([\S ]+) x ?([\d ,]+)$")
+# Cargo Scanner II
+LISTING_RE3 = re.compile(r"^([\S ]+)$")
 
 
 def parse_listing(lines):
@@ -23,11 +25,12 @@ def parse_listing(lines):
     """
     matches, bad_lines = regex_match_lines(LISTING_RE, lines)
     matches2, bad_lines2 = regex_match_lines(LISTING_RE2, bad_lines)
+    matches3, bad_lines3 = regex_match_lines(LISTING_RE3, bad_lines2)
 
     result = ([{'name': name.strip(), 'quantity': f_int(count)}
                for count, name in matches] +
               [{'name': name.strip(),
                 'quantity': f_int(count or '1')} for name, count in matches2] +
-              [{'name': name, 'quantity': 1} for name in bad_lines2])
+              [{'name': name[0], 'quantity': 1} for name in matches3])
 
-    return result, []
+    return result, bad_lines3
