@@ -44,7 +44,7 @@ ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
                                 (\t([\S ]*))?               # category
                                 (\t(Large|Medium|Small|))?  # size
                                 (\t(High|Medium|Low|))?     # slot
-                                (\t([\d ,]* m3))?           # volume
+                                (\t([\d ,\.]* m3))?          # volume
                                 (\t([\d]+|))?               # meta level
                                 (\t([\d])+|)?$              # tech level
                                """, re.X)
