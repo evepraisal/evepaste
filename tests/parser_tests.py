@@ -10,6 +10,7 @@ from evepaste.testing.tables.bill_of_materials import BOM_TABLE
 from evepaste.testing.tables.manufacturing import MANUFACTURING_TABLE
 
 import inspect
+import pprint
 
 
 class TableChecker(object):
@@ -30,7 +31,7 @@ class TableChecker(object):
             result = self.funct(input_str)
             assert result == expected, '''Unexpected result.
 Expected: %s
-Actual: %s''' % (expected, result)
+Actual: %s''' % (pprint.pformat(expected), pprint.pformat(result))
 
 
 def test_generator():
@@ -45,6 +46,6 @@ def test_generator():
                   BOM_TABLE,
                   MANUFACTURING_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
-            name = ('TableTest: %s[%s]' % (str(table.funct.__name__), i))
+            name = ('test_%s[%s]' % (str(table.funct.__name__), i))
             checker = TableChecker(table.funct, name)
             yield checker, input_str, expected

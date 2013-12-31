@@ -35,9 +35,9 @@ ASSET_LIST_RE = re.compile(r"""^([\S ]*)                   # name
                                (\t([\S ]*))?               # category
                                (\t(Large|Medium|Small|))?  # size
                                (\t(High|Medium|Low|))?     # slot
-                               (\t([\S ]* m3))?            # volume
-                               (\t([\d]+|))?                # meta level
-                               (\t([\d])+|)?$               # tech level
+                               (\t([\d ,]* m3))?           # volume
+                               (\t([\d]+|))?               # meta level
+                               (\t([\d])+|)?$              # tech level
                                """, re.X)
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
@@ -77,6 +77,10 @@ def parse_human_listing(paste_string):
 
 
 def parse_fitting_listing(paste_string):
+    """ Parse Fitting List
+
+    :param string paste_string: A new-line separated list of items
+    """
     paste_lines = split_and_strip(paste_string)
 
     for item in FITTING_BLACKLIST:
@@ -104,7 +108,8 @@ def parse_eft(paste_string):
     if len(title_parts) != 2:
         raise Unparsable('Invalid EFT title line')
 
-    ship, eft_name = title_parts
+    ship = title_parts[0].strip()
+    eft_name = title_parts[1].strip()
     modules = []
 
     # Match "Module, Ammo"
