@@ -25,4 +25,3 @@ LOOT_HISTORY_TABLE.add_test('''03:21:19 Some dude has looted 5 x Garde II
                                'quantity': 5,
                                'name': 'Garde II'}], []))
 LOOT_HISTORY_TABLE.add_test('Garde II', ([], ['Garde II']))
-LOOT_HISTORY_TABLE.add_test('', ([], []))

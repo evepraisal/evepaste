@@ -4,11 +4,11 @@ evepaste.testing.tables.fitting
 Fitting listing table tests
 
 """
-from evepaste import parse_fitting_listing
+from evepaste import parse_fitting
 from evepaste.testing import TableTestGroup
 
 
-FITTING_TABLE = TableTestGroup(parse_fitting_listing)
+FITTING_TABLE = TableTestGroup(parse_fitting)
 FITTING_TABLE.add_test('''High power
 5x Heavy Missile Launcher II
 Medium power
@@ -46,12 +46,12 @@ Drones
     {'name': 'Ballistic Control System II', 'quantity': 3},
     {'name': 'Medium Ancillary Current Router I', 'quantity': 1},
     {'name': 'Medium Core Defense Field Extender I', 'quantity': 2},
-    {'name': 'Tengu Offensive - Accelerated Ejection Bay', 'quantity': 1},
-    {'name': 'Tengu Propulsion - Fuel Catalyst', 'quantity': 1},
-    {'name': 'Tengu Defensive - Supplemental Screening', 'quantity': 1},
-    {'name': 'Tengu Electronics - Dissolution Sequencer', 'quantity': 1},
-    {'name': 'Tengu Engineering - Capacitor Regeneration Matrix',
-     'quantity': 1},
     {'name': 'Caldari Navy Scourge Heavy Missile', 'quantity': 8718},
     {'name': 'Targeting Range Dampening Script', 'quantity': 1},
-    {'name': 'Warrior II', 'quantity': 12}], []))
+    {'name': 'Warrior II', 'quantity': 12},
+    {'name': '1x Tengu Offensive - Accelerated Ejection Bay', 'quantity': 1},
+    {'name': '1x Tengu Propulsion - Fuel Catalyst', 'quantity': 1},
+    {'name': '1x Tengu Defensive - Supplemental Screening', 'quantity': 1},
+    {'name': '1x Tengu Electronics - Dissolution Sequencer', 'quantity': 1},
+    {'name': '1x Tengu Engineering - Capacitor Regeneration Matrix',
+     'quantity': 1}], []))

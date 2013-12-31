@@ -21,4 +21,3 @@ Wreck\tTayra\t82 km''', ([
     {'name': "Wreck", 'type': 'Tayra', 'distance': '82 km'}], []))
 DSCAN_TABLE.add_test('test\tNoctis\t3 225 m', ([
     {'name': 'test', 'type': 'Noctis', 'distance': '3 225 m'}], []))
-DSCAN_TABLE.add_test('', ([], []))

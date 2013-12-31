@@ -4,11 +4,11 @@ evepaste.testing.tables.assets
 Asset list table tests
 
 """
-from evepaste import parse_asset_list
+from evepaste import parse_assets
 from evepaste.testing import TableTestGroup
 
 
-ASSET_TABLE = TableTestGroup(parse_asset_list)
+ASSET_TABLE = TableTestGroup(parse_assets)
 ASSET_TABLE.add_test('Hurricane\t1\tCombat Battlecruiser\t\t\t15,000 m3',
                      ([{'category': '',
                         'slot': None,
@@ -81,13 +81,12 @@ Warrior II\t9''',
                         'tech_level': None,
                         'meta_level': None,
                         'quantity': 9}], []))
-ASSET_TABLE.add_test('hurricane', ([{'category': None,
-                                     'slot': None,
-                                     'group': None,
-                                     'name': 'hurricane',
-                                     'volume': None,
-                                     'size': None,
-                                     'tech_level': None,
-                                     'meta_level': None,
-                                     'quantity': 1}], []))
-ASSET_TABLE.add_test('', ([], []))
+ASSET_TABLE.add_test('hurricane\t20', ([{'category': None,
+                                         'slot': None,
+                                         'group': None,
+                                         'name': 'hurricane',
+                                         'volume': None,
+                                         'size': None,
+                                         'tech_level': None,
+                                         'meta_level': None,
+                                         'quantity': 20}], []))

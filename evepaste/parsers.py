@@ -9,9 +9,8 @@ import re
 from evepaste.exceptions import Unparsable
 from evepaste.utils import split_and_strip, regex_match_lines, f_int
 
-CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ([\S ]+)$")
-HUMAN_LIST_RE = re.compile(r"^([\d ,]+)[x ]+([\S ]+)$")
-HUMAN_LIST_RE2 = re.compile(r"^([\S ]+) x ?([\d ,]+)$")
+CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ?x? ?([\w ]+)$")
+CARGO_SCAN_RE2 = re.compile(r"^([\w ]+) ?x ?([\d ,]+)$")
 FITTING_BLACKLIST = ['High power',
                      'Medium power',
                      'Low power',
@@ -37,7 +36,7 @@ CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
                               ([\S ]*)$   # info
                               """, re.X)
 ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
-                                (\t([\d ,]+))?              # quantity
+                                \t([\d ,]+)                 # quantity
                                 (\t([\S ]*))?               # group
                                 (\t([\S ]*))?               # category
                                 (\t(Large|Medium|Small|))?  # size
@@ -64,41 +63,34 @@ def parse_cargo_scan(paste_string):
     """
     paste_lines = split_and_strip(paste_string)
     matches, bad_lines = regex_match_lines(CARGO_SCAN_RE, paste_lines)
-    result = [{'name': name, 'quantity': f_int(count)}
-              for count, name in matches]
-    return result, bad_lines
+    matches2, bad_lines2 = regex_match_lines(CARGO_SCAN_RE2, bad_lines)
 
-
-def parse_human_listing(paste_string):
-    """ Parse Human-readble List of items
-
-    :param string paste_string: A new-line separated list of items
-    """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(HUMAN_LIST_RE, paste_lines)
-    matches2, bad_lines2 = regex_match_lines(HUMAN_LIST_RE2, bad_lines)
-
-    result = ([{'name': name,
-                'quantity': f_int(count or '1')} for count, name in matches] +
-              [{'name': name,
+    result = ([{'name': name.strip(), 'quantity': f_int(count)}
+               for count, name in matches] +
+              [{'name': name.strip(),
                 'quantity': f_int(count or '1')} for name, count in matches2] +
               [{'name': name, 'quantity': 1} for name in bad_lines2])
 
     return result, []
 
 
-def parse_fitting_listing(paste_string):
+def parse_fitting(paste_string):
     """ Parse Fitting List
 
     :param string paste_string: A new-line separated list of items
     """
     paste_lines = split_and_strip(paste_string)
 
+    is_fitting_listing = False
     for item in FITTING_BLACKLIST:
         if item in paste_lines:
             paste_lines.remove(item)
+            is_fitting_listing = True
 
-    return parse_human_listing('\n'.join(paste_lines))
+    if is_fitting_listing is False:
+        raise Unparsable('Not a fitting list')
+
+    return parse_cargo_scan('\n'.join(paste_lines))
 
 
 def parse_eft(paste_string):
@@ -114,6 +106,9 @@ def parse_eft(paste_string):
 
     if not paste_lines:
         raise Unparsable('No valid parsable lines')
+
+    if '[' not in paste_lines[0] or ']' not in paste_lines[0]:
+        raise Unparsable('Invalid EFT title line')
 
     title_parts = paste_lines[0].strip('[]').split(',', 1)
     if len(title_parts) != 2:
@@ -185,7 +180,7 @@ def parse_contract(paste_string):
     return result, bad_lines
 
 
-def parse_asset_list(paste_string):
+def parse_assets(paste_string):
     """ Parse asset list
 
     :param string paste_string: An asset list string
@@ -203,7 +198,7 @@ def parse_asset_list(paste_string):
                'meta_level': meta_level,
                'tech_level': tech_level}
               for (name,
-                   _, quantity,
+                   quantity,
                    _, group,
                    _, category,
                    _, size,
