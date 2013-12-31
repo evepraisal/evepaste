@@ -25,10 +25,18 @@ EFT_BLACKLIST = ['[empty high slot]',
                  '[empty low slot]',
                  '[empty medium slot]',
                  '[empty rig slot]']
-DSCAN_LIST_RE = re.compile(r"^([\S ]*)\t([\S ]*)\t([\S ]*)$")
+DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t  # name
+                                ([\S ]*)\t  # type
+                                ([\S ]*)$   # distance
+                                """, re.X)
 LOOT_HIST_RE = re.compile(
     r"(\d\d:\d\d:\d\d) ([\S ]+) has looted ([\d ,]+) x ([\S ]+)$")
-CONTRACT_RE = re.compile(r"^([\S ]*)\t(\d*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
+CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
+                              (\d*)\t     # quantity
+                              ([\S ]*)\t  # type
+                              ([\S ]*)\t  # category
+                              ([\S ]*)$   # info
+                              """, re.X)
 ASSET_LIST_RE = re.compile(r"""^([\S ]*)                   # name
                                (\t([\d ,]+))?              # quantity
                                (\t([\S ]*))?               # group
@@ -68,9 +76,9 @@ def parse_human_listing(paste_string):
     matches2, bad_lines2 = regex_match_lines(HUMAN_LIST_RE2, bad_lines)
 
     result = ([{'name': name,
-                'quantity': f_int(count or 1)} for count, name in matches] +
+                'quantity': f_int(count or '1')} for count, name in matches] +
               [{'name': name,
-                'quantity': f_int(count or 1)} for name, count in matches2] +
+                'quantity': f_int(count or '1')} for name, count in matches2] +
               [{'name': name, 'quantity': 1} for name in bad_lines2])
 
     return result, []
@@ -168,7 +176,7 @@ def parse_contract(paste_string):
     matches, bad_lines = regex_match_lines(CONTRACT_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': f_int(quantity or 1),
+               'quantity': f_int(quantity or '1'),
                'type': _type,
                'category': category,
                'info': info,
@@ -186,7 +194,7 @@ def parse_asset_list(paste_string):
     matches, bad_lines = regex_match_lines(ASSET_LIST_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': f_int(quantity),
+               'quantity': f_int(quantity or '1'),
                'group': group,
                'category': category,
                'size': size,
@@ -234,7 +242,7 @@ def parse_manufacturing(paste_string):
     matches, bad_lines = regex_match_lines(MANUFACTURING_RE, paste_lines)
 
     result = [{'name': name,
-               'quantity': f_int(quantity or 1),
+               'quantity': f_int(quantity or '1'),
                'type': _type,
                'category': category,
                'info': info}

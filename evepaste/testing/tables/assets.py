@@ -89,5 +89,5 @@ ASSET_TABLE.add_test('hurricane', ([{'category': None,
                                      'size': None,
                                      'tech_level': None,
                                      'meta_level': None,
-                                     'quantity': None}], []))
+                                     'quantity': 1}], []))
 ASSET_TABLE.add_test('', ([], []))
