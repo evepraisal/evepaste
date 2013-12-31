@@ -7,7 +7,6 @@ from evepaste.testing.tables.loot_history import LOOT_HISTORY_TABLE
 from evepaste.testing.tables.contract import CONTRACT_TABLE
 from evepaste.testing.tables.assets import ASSET_TABLE
 from evepaste.testing.tables.bill_of_materials import BOM_TABLE
-from evepaste.testing.tables.manufacturing import MANUFACTURING_TABLE
 from evepaste.testing.tables.parse import PARSE_TABLE
 
 import inspect
@@ -44,7 +43,6 @@ def test_generator():
                   CONTRACT_TABLE,
                   ASSET_TABLE,
                   BOM_TABLE,
-                  MANUFACTURING_TABLE,
                   PARSE_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             name = ('test_%s[%s]' % (str(table.funct.__name__), i))
@@ -58,7 +56,6 @@ def test_generator():
                   LOOT_HISTORY_TABLE,
                   CONTRACT_TABLE,
                   ASSET_TABLE,
-                  # MANUFACTURING_TABLE <- too close to asset listing
                   BOM_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             if isinstance(expected, tuple) and not expected[1]:

@@ -11,8 +11,7 @@ from evepaste.parsers import (parse_cargo_scan,
                               parse_loot_history,
                               parse_contract,
                               parse_assets,
-                              parse_bill_of_materials,
-                              parse_manufacturing)
+                              parse_bill_of_materials)
 from evepaste.exceptions import Unparsable
 
 
@@ -50,7 +49,6 @@ __all__ = ['parse',
            'parse_contract',
            'parse_assets',
            'parse_bill_of_materials',
-           'parse_fitting',
-           'parse_manufacturing']
+           'parse_fitting']
 
 __version__ = '0.1'

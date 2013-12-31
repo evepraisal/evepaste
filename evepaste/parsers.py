@@ -9,8 +9,10 @@ import re
 from evepaste.exceptions import Unparsable
 from evepaste.utils import split_and_strip, regex_match_lines, f_int
 
-CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ?x? ?([\w ]+)$")
-CARGO_SCAN_RE2 = re.compile(r"^([\w ]+) ?x ?([\d ,]+)$")
+# 10 x Cargo Scanner II | 10x Cargo Scanner II | 10 Cargo Scanner II
+CARGO_SCAN_RE = re.compile(r"^([\d ,]+) ?x? ([\w ]+)$")
+# Cargo Scanner II x10 | Cargo Scanner II 10
+CARGO_SCAN_RE2 = re.compile(r"^([\w ]+) x ?([\d ,]+)$")
 FITTING_BLACKLIST = ['High power',
                      'Medium power',
                      'Low power',
@@ -18,6 +20,7 @@ FITTING_BLACKLIST = ['High power',
                      'Sub System',
                      'Charges',
                      'Drones']
+# [Rifter, Title] | [Rifter,Title]
 EFT_LIST_RE = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
                  '[empty low slot]',
@@ -47,12 +50,6 @@ ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
                                """, re.X)
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
-MANUFACTURING_RE = re.compile(r"""^([\S ]*)\t   # name
-                                   ([\d ,]*)\t  # quantity
-                                   ([\S ]*)\t   # type
-                                   ([\S ]*)\t   # category
-                                   ([\S ]*)$    # info
-                                   """, re.X)
 
 
 def parse_cargo_scan(paste_string):
@@ -226,20 +223,3 @@ def parse_bill_of_materials(paste_string):
                 'quantity': f_int(quantity)}
                for name, quantity in matches2]
     return result + result2, bad_lines2
-
-
-def parse_manufacturing(paste_string):
-    """ Parse manufacturing list
-
-    :param string paste_string: A manufacturing list string
-    """
-    paste_lines = split_and_strip(paste_string)
-    matches, bad_lines = regex_match_lines(MANUFACTURING_RE, paste_lines)
-
-    result = [{'name': name,
-               'quantity': f_int(quantity or '1'),
-               'type': _type,
-               'category': category,
-               'info': info}
-              for name, quantity, _type, category, info in matches]
-    return result, bad_lines

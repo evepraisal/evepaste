@@ -33,8 +33,7 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
 CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
  Large Core Defense Field Extender I\t1\tRig Shield\tModule\tFitted
  Scorch M\t1\tAdvanced Pulse Laser Crystal\tCharge\tFitted 72% damaged
- Scorch L\t2\tAdvanced Pulse Laser Crystal\tCharge\t 1% damaged
- ''',
+ Scorch L\t2\tAdvanced Pulse Laser Crystal\tCharge\t 1% damaged''',
                         ([{'category': 'Ship',
                            'info': '',
                            'name': 'Rokh',
@@ -59,4 +58,14 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
                            'type': 'Advanced Pulse Laser Crystal',
                            'fitted': False,
                            'quantity': 2}], []))
+CONTRACT_TABLE.add_test('''
+Armageddon Blueprint\t1\tBattleship Blueprint\tBlueprint\tBLUEPRINT COPY - \
+Runs: 9 - Material Level: 29 - Productivity Level: 0
+''', ([{'category': 'Blueprint',
+        'fitted': False,
+        'info': 'BLUEPRINT COPY - Runs: 9 - '
+        'Material Level: 29 - Productivity Level: 0',
+        'name': 'Armageddon Blueprint',
+        'quantity': 1,
+        'type': 'Battleship Blueprint'}], []))
 CONTRACT_TABLE.add_test('Rokh', ([], ['Rokh']))

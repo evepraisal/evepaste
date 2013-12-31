@@ -21,7 +21,9 @@ CARGO_SCAN_TABLE.add_test('Minmatar Shuttle',
                           ([{'name': 'Minmatar Shuttle', 'quantity': 1}], []))
 CARGO_SCAN_TABLE.add_test('10x Minmatar Shuttle',
                           ([{'name': 'Minmatar Shuttle', 'quantity': 10}], []))
-CARGO_SCAN_TABLE.add_test('10xMinmatar Shuttle',
-                          ([{'name': 'Minmatar Shuttle', 'quantity': 10}], []))
 CARGO_SCAN_TABLE.add_test('Minmatar Shuttle x 10',
                           ([{'name': 'Minmatar Shuttle', 'quantity': 10}], []))
+
+CARGO_SCAN_TABLE.add_test('10 200mm Afterburner',
+                          ([{'name': '200mm Afterburner',
+                             'quantity': 10}], []))
