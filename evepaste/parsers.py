@@ -37,20 +37,24 @@ CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
                               ([\S ]*)\t  # category
                               ([\S ]*)$   # info
                               """, re.X)
-ASSET_LIST_RE = re.compile(r"""^([\S ]*)                   # name
-                               (\t([\d ,]+))?              # quantity
-                               (\t([\S ]*))?               # group
-                               (\t([\S ]*))?               # category
-                               (\t(Large|Medium|Small|))?  # size
-                               (\t(High|Medium|Low|))?     # slot
-                               (\t([\d ,]* m3))?           # volume
-                               (\t([\d]+|))?               # meta level
-                               (\t([\d])+|)?$              # tech level
+ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
+                                (\t([\d ,]+))?              # quantity
+                                (\t([\S ]*))?               # group
+                                (\t([\S ]*))?               # category
+                                (\t(Large|Medium|Small|))?  # size
+                                (\t(High|Medium|Low|))?     # slot
+                                (\t([\d ,]* m3))?           # volume
+                                (\t([\d]+|))?               # meta level
+                                (\t([\d])+|)?$              # tech level
                                """, re.X)
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
-MANUFACTURING_RE = re.compile(
-    r"^([\S ]*)\t([\d ,]*)\t([\S ]*)\t([\S ]*)\t([\S ]*)$")
+MANUFACTURING_RE = re.compile(r"""^([\S ]*)\t   # name
+                                   ([\d ,]*)\t  # quantity
+                                   ([\S ]*)\t   # type
+                                   ([\S ]*)\t   # category
+                                   ([\S ]*)$    # info
+                                   """)
 
 
 def parse_cargo_scan(paste_string):
