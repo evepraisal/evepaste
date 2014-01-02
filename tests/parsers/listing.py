@@ -23,7 +23,13 @@ LISTING_TABLE.add_test('10x Minmatar Shuttle',
                        ([{'name': 'Minmatar Shuttle', 'quantity': 10}], []))
 LISTING_TABLE.add_test('Minmatar Shuttle x 10',
                        ([{'name': 'Minmatar Shuttle', 'quantity': 10}], []))
-
 LISTING_TABLE.add_test('10 200mm Afterburner',
-                       ([{'name': '200mm Afterburner',
-                          'quantity': 10}], []))
+                       ([{'name': '200mm Afterburner', 'quantity': 10}], []))
+LISTING_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Original)',
+                       ([{'name': 'Plagioclase Mining Crystal I Blueprint',
+                          'quantity': 10,
+                          'info': 'BLUEPRINT ORIGINAL'}], []))
+LISTING_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Copy)',
+                       ([{'name': 'Plagioclase Mining Crystal I Blueprint',
+                          'quantity': 10,
+                          'info': 'BLUEPRINT COPY'}], []))

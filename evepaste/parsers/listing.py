@@ -33,4 +33,12 @@ def parse_listing(lines):
                 'quantity': f_int(count or '1')} for name, count in matches2] +
               [{'name': name[0], 'quantity': 1} for name in matches3])
 
+    for item in result:
+        if item['name'].endswith(' (Copy)'):
+            item['info'] = 'BLUEPRINT COPY'
+            item['name'] = item['name'].replace(' (Copy)', '')
+        if item['name'].endswith(' (Original)'):
+            item['info'] = 'BLUEPRINT ORIGINAL'
+            item['name'] = item['name'].replace(' (Original)', '')
+
     return result, bad_lines3
