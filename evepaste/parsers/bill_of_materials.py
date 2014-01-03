@@ -18,7 +18,7 @@ def parse_bill_of_materials(lines):
     :param string paste_string: A bill of material string
     """
     matches, bad_lines = regex_match_lines(BOM_RE, lines)
-    matches2, bad_lines2 = regex_match_lines(BOM_RE2, bad_lines)
+    matches2, _ = regex_match_lines(BOM_RE2, bad_lines)
 
     result = [{'name': name,
                'you': f_int(you),
