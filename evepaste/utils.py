@@ -43,7 +43,7 @@ def f_int(num):
 
     :param string num: A string of the format "123,456", "123 456" or "123456"
     """
-    return int(num.replace(',', '').replace(' ', ''))
+    return int(num.replace(',', '').replace('.', '').replace(' ', ''))
 
 
 def unpack_string(funct):

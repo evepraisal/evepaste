@@ -9,11 +9,11 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 
-CONTRACT_RE = re.compile(r"""^([\S ]*)\t  # name
-                              (\d*)\t     # quantity
-                              ([\S ]*)\t  # type
-                              ([\S ]*)\t  # category
-                              ([\S ]*)$   # info
+CONTRACT_RE = re.compile(r"""^([\S ]*)\t     # name
+                              ([\d ,\.]*)\t  # quantity
+                              ([\S ]*)\t     # type
+                              ([\S ]*)\t     # category
+                              ([\S ]*)$      # info
                               """, re.X)
 
 

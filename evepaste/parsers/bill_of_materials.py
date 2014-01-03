@@ -27,4 +27,4 @@ def parse_bill_of_materials(lines):
     result2 = [{'name': name,
                 'quantity': f_int(quantity)}
                for name, quantity in matches2]
-    return result + result2, bad_lines2
+    return result + result2, []

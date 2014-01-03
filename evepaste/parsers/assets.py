@@ -9,7 +9,7 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
-                                \t([\d ,]*)                 # quantity
+                                \t([\d ,\.]*)               # quantity
                                 (\t([\S ]*))?               # group
                                 (\t([\S ]*))?               # category
                                 (\t(Large|Medium|Small|))?  # size

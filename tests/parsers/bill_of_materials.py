@@ -51,5 +51,4 @@ Tritanium [899052]
                      'name': 'Zydrine'},
                     {'name': 'Tritanium',
                      'quantity': 899052}],
-                    ['There is usually some extra text here.',
-                     'Industry Level I']))
+                    []))

@@ -91,12 +91,34 @@ ASSET_TABLE.add_test('hurricane\t20', ([{'category': None,
                                          'meta_level': None,
                                          'quantity': 20}], []))
 ASSET_TABLE.add_test('''
-Sleeper Data Library\t108\tSleeper Components\t\t\t10.80 m3
+Sleeper Data Library\t1.080\tSleeper Components\t\t\t10.80 m3
 ''', ([{'category': '',
         'group': 'Sleeper Components',
         'meta_level': None,
         'name': 'Sleeper Data Library',
-        'quantity': 108,
+        'quantity': 1080,
+        'size': '',
+        'slot': None,
+        'tech_level': None,
+        'volume': '10.80 m3'}], []))
+ASSET_TABLE.add_test('''
+Sleeper Data Library\t1 080\tSleeper Components\t\t\t10.80 m3
+''', ([{'category': '',
+        'group': 'Sleeper Components',
+        'meta_level': None,
+        'name': 'Sleeper Data Library',
+        'quantity': 1080,
+        'size': '',
+        'slot': None,
+        'tech_level': None,
+        'volume': '10.80 m3'}], []))
+ASSET_TABLE.add_test('''
+Sleeper Data Library\t1,080\tSleeper Components\t\t\t10.80 m3
+''', ([{'category': '',
+        'group': 'Sleeper Components',
+        'meta_level': None,
+        'name': 'Sleeper Data Library',
+        'quantity': 1080,
         'size': '',
         'slot': None,
         'tech_level': None,
