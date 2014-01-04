@@ -35,10 +35,10 @@ def parse_listing(lines):
 
     for item in result:
         if item['name'].endswith(' (Copy)'):
-            item['info'] = 'BLUEPRINT COPY'
+            item['details'] = 'BLUEPRINT COPY'
             item['name'] = item['name'].replace(' (Copy)', '')
         if item['name'].endswith(' (Original)'):
-            item['info'] = 'BLUEPRINT ORIGINAL'
+            item['details'] = 'BLUEPRINT ORIGINAL'
             item['name'] = item['name'].replace(' (Original)', '')
 
     return result, bad_lines3

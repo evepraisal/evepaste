@@ -13,8 +13,12 @@ CONTRACT_RE = re.compile(r"""^([\S ]*)\t     # name
                               ([\d ,\.]*)\t  # quantity
                               ([\S ]*)\t     # type
                               ([\S ]*)\t     # category
-                              ([\S ]*)$      # info
+                              ([\S ]*)$      # details
                               """, re.X)
+CONTRACT_RE2 = re.compile(r"""^([\S ]*)\t     # name
+                               ([\d ,\.]*)\t  # quantity
+                               ([\S ]*)$      # type
+                               """, re.X)
 
 
 def parse_contract(lines):
@@ -23,12 +27,18 @@ def parse_contract(lines):
     :param string paste_string: A contract result string
     """
     matches, bad_lines = regex_match_lines(CONTRACT_RE, lines)
+    matches2, bad_lines2 = regex_match_lines(CONTRACT_RE2, bad_lines)
 
     result = [{'name': name,
                'quantity': f_int(quantity or '1'),
                'type': _type,
                'category': category,
-               'info': info,
-               'fitted': info.startswith('Fitted')}
-              for name, quantity, _type, category, info in matches]
-    return result, bad_lines
+               'details': details,
+               'fitted': details.startswith('Fitted')}
+              for name, quantity, _type, category, details in matches]
+
+    result2 = [{'name': name,
+               'quantity': f_int(quantity or '1'),
+               'type': _type} for name, quantity, _type in matches2]
+
+    return result + result2, bad_lines2

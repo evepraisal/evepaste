@@ -28,8 +28,8 @@ LISTING_TABLE.add_test('10 200mm Afterburner',
 LISTING_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Original)',
                        ([{'name': 'Plagioclase Mining Crystal I Blueprint',
                           'quantity': 10,
-                          'info': 'BLUEPRINT ORIGINAL'}], []))
+                          'details': 'BLUEPRINT ORIGINAL'}], []))
 LISTING_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Copy)',
                        ([{'name': 'Plagioclase Mining Crystal I Blueprint',
                           'quantity': 10,
-                          'info': 'BLUEPRINT COPY'}], []))
+                          'details': 'BLUEPRINT COPY'}], []))
