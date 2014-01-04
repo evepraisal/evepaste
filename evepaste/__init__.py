@@ -51,6 +51,8 @@ parse_eft = unpack_string(parsers.parse_eft)
 parse_fitting = unpack_string(parsers.parse_fitting)
 parse_listing = unpack_string(parsers.parse_listing)
 parse_loot_history = unpack_string(parsers.parse_loot_history)
+parse_pi = unpack_string(parsers.parse_pi)
+parse_survey_scanner = unpack_string(parsers.parse_survey_scanner)
 parse_view_contents = unpack_string(parsers.parse_view_contents)
 
 
@@ -69,6 +71,8 @@ def parse(paste_string):
         for name, parser in (('bill_of_materials',
                               parsers.parse_bill_of_materials),
                              ('loot_history', parsers.parse_loot_history),
+                             ('survey_scanner', parsers.parse_survey_scanner),
+                             ('pi', parsers.parse_pi),
                              ('dscan', parsers.parse_dscan),
                              ('eft', parsers.parse_eft),
                              ('fitting', parsers.parse_fitting),

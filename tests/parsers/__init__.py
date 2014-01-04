@@ -12,7 +12,9 @@ from tests.parsers.eft import EFT_TABLE
 from tests.parsers.fitting import FITTING_TABLE
 from tests.parsers.listing import LISTING_TABLE
 from tests.parsers.loot_history import LOOT_HISTORY_TABLE
+from tests.parsers.pi import PI_TABLE
 from tests.parsers.parse import PARSE_TABLE
+from tests.parsers.survey_scanner import SURVEY_SCANNER_TABLE
 from tests.parsers.view_contents import VIEW_CONTENTS_TABLE
 
 __all__ = ['ASSET_TABLE',
@@ -23,5 +25,7 @@ __all__ = ['ASSET_TABLE',
            'FITTING_TABLE',
            'LISTING_TABLE',
            'LOOT_HISTORY_TABLE',
+           'PI_TABLE',
            'PARSE_TABLE',
+           'SURVEY_SCANNER_TABLE',
            'VIEW_CONTENTS_TABLE']
