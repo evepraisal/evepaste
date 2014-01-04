@@ -13,6 +13,7 @@ from evepaste.parsers.eft import parse_eft
 from evepaste.parsers.fitting import parse_fitting
 from evepaste.parsers.listing import parse_listing
 from evepaste.parsers.loot_history import parse_loot_history
+from evepaste.parsers.view_contents import parse_view_contents
 
 __all__ = ['parse_assets',
            'parse_bill_of_materials',
@@ -21,4 +22,5 @@ __all__ = ['parse_assets',
            'parse_eft',
            'parse_fitting',
            'parse_listing',
-           'parse_loot_history']
+           'parse_loot_history',
+           'parse_view_contents']

@@ -13,6 +13,7 @@ from tests.parsers.fitting import FITTING_TABLE
 from tests.parsers.listing import LISTING_TABLE
 from tests.parsers.loot_history import LOOT_HISTORY_TABLE
 from tests.parsers.parse import PARSE_TABLE
+from tests.parsers.view_contents import VIEW_CONTENTS_TABLE
 
 __all__ = ['ASSET_TABLE',
            'BOM_TABLE',
@@ -22,4 +23,5 @@ __all__ = ['ASSET_TABLE',
            'FITTING_TABLE',
            'LISTING_TABLE',
            'LOOT_HISTORY_TABLE',
-           'PARSE_TABLE']
+           'PARSE_TABLE',
+           'VIEW_CONTENTS_TABLE']

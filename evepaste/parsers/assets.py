@@ -7,7 +7,7 @@ Parse eve online asset lists. This also invludes inventory listings.
 import re
 
 from evepaste.utils import regex_match_lines, f_int
-# Quafe Zero\t12\tBooster\tImplant\t\t1 \t12 m3\t\t
+
 ASSET_LIST_RE = re.compile(r"""^([\S ]*)                           # name
                                 \t([\d ,\.]*)                      # quantity
                                 (\t([\S ]*))?                      # group

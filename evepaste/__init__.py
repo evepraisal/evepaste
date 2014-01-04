@@ -51,6 +51,7 @@ parse_eft = unpack_string(parsers.parse_eft)
 parse_fitting = unpack_string(parsers.parse_fitting)
 parse_listing = unpack_string(parsers.parse_listing)
 parse_loot_history = unpack_string(parsers.parse_loot_history)
+parse_view_contents = unpack_string(parsers.parse_view_contents)
 
 
 def parse(paste_string):
@@ -73,7 +74,8 @@ def parse(paste_string):
                              ('fitting', parsers.parse_fitting),
                              ('contract', parsers.parse_contract),
                              ('assets', parsers.parse_assets),
-                             ('listing', parsers.parse_listing)):
+                             ('listing', parsers.parse_listing),
+                             ('view_contents', parsers.parse_view_contents)):
             try:
                 result, bad_lines = parser(lines)
                 if checker(result, bad_lines):

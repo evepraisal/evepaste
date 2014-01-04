@@ -12,6 +12,7 @@ def test_generator():
                   parsers.CONTRACT_TABLE,
                   parsers.ASSET_TABLE,
                   parsers.BOM_TABLE,
+                  parsers.VIEW_CONTENTS_TABLE,
                   parsers.PARSE_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             name = ('test_%s[%s]' % (str(table.funct.__name__), i))
@@ -26,7 +27,8 @@ def test_generator():
                   parsers.LOOT_HISTORY_TABLE,
                   parsers.CONTRACT_TABLE,
                   parsers.ASSET_TABLE,
-                  parsers.BOM_TABLE]:
+                  parsers.BOM_TABLE,
+                  parsers.VIEW_CONTENTS_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             if isinstance(expected, tuple) and not expected[1]:
                 name = ('test_parse(%s)[%s]' % (str(table.funct.__name__), i))
