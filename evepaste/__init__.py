@@ -101,4 +101,4 @@ __all__ = ['parse',
            'parse_listing',
            'parse_loot_history']
 
-__version__ = '0.1'
+__version__ = '0.2'
