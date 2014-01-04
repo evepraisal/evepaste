@@ -123,3 +123,25 @@ Sleeper Data Library\t1,080\tSleeper Components\t\t\t10.80 m3
         'slot': None,
         'tech_level': None,
         'volume': '10.80 m3'}], []))
+ASSET_TABLE.add_test('''
+Amarr Dreadnought\t1\tSpaceship Command\tSkill\t\t\t0.01 m3\t\t
+''', ([{'category': 'Skill',
+        'slot': '',
+        'group': 'Spaceship Command',
+        'name': 'Amarr Dreadnought',
+        'volume': '0.01 m3',
+        'size': '',
+        'tech_level': '',
+        'meta_level': '',
+        'quantity': 1}], []))
+ASSET_TABLE.add_test('''
+Quafe Zero\t12\tBooster\tImplant\t\t1 \t12 m3\t\t
+''', ([{'category': 'Implant',
+        'slot': '1 ',
+        'group': 'Booster',
+        'name': 'Quafe Zero',
+        'volume': '12 m3',
+        'size': '',
+        'tech_level': '',
+        'meta_level': '',
+        'quantity': 12}], []))

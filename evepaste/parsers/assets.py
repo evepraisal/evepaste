@@ -7,16 +7,16 @@ Parse eve online asset lists. This also invludes inventory listings.
 import re
 
 from evepaste.utils import regex_match_lines, f_int
-
-ASSET_LIST_RE = re.compile(r"""^([\S ]*)                    # name
-                                \t([\d ,\.]*)               # quantity
-                                (\t([\S ]*))?               # group
-                                (\t([\S ]*))?               # category
-                                (\t(Large|Medium|Small|))?  # size
-                                (\t(High|Medium|Low|))?     # slot
-                                (\t([\d ,\.]* m3))?         # volume
-                                (\t([\d]+|))?               # meta level
-                                (\t([\d])+|)?$              # tech level
+# Quafe Zero\t12\tBooster\tImplant\t\t1 \t12 m3\t\t
+ASSET_LIST_RE = re.compile(r"""^([\S ]*)                           # name
+                                \t([\d ,\.]*)                      # quantity
+                                (\t([\S ]*))?                      # group
+                                (\t([\S ]*))?                      # category
+                                (\t(XLarge|Large|Medium|Small|))?  # size
+                                (\t(High|Medium|Low|Rigs|[\d ]*))? # slot
+                                (\t([\d ,\.]* m3))?                # volume
+                                (\t([\d]+|))?                      # meta level
+                                (\t([\d]+|))?$                     # tech level
                                """, re.X)
 
 
