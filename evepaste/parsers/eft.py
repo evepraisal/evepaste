@@ -8,6 +8,7 @@ import re
 
 from evepaste.exceptions import Unparsable
 from evepaste.utils import regex_match_lines
+from evepaste.parsers.listing import parse_listing
 
 # [Rifter, Title] | [Rifter,Title]
 EFT_LIST_RE = re.compile(r"^([\S ]+), ?([\S ]+)$")
@@ -42,14 +43,15 @@ def parse_eft(lines):
 
     # Match "Module, Ammo"
     matches, bad_lines = regex_match_lines(EFT_LIST_RE, lines[1:])
+    matches2, bad_lines2 = parse_listing(bad_lines)
 
     for module, ammo in matches:
         modules.append({'name': module, 'ammo': ammo})
 
-    for line in bad_lines:
-        modules.append({'name': line})
+    for item in matches2:
+        modules.append(item)
 
     result = {'ship': ship.strip(),
               'name': eft_name.strip(),
               'modules': [res for res in modules]}
-    return result, []
+    return result, bad_lines2

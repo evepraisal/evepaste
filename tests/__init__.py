@@ -17,6 +17,7 @@ class TableChecker(unittest.TestCase):
         self.description = name
 
     def run(self, input_str, expected):
+        self.maxDiff = 1000000
         if inspect.isclass(expected) and issubclass(expected, Exception):
             self.assertRaises(expected, self.funct, input_str)
         else:

@@ -21,18 +21,22 @@ Warp Disruptor I
 200mm AutoCannon I, EMP S
 200mm AutoCannon I, EMP S
 200mm AutoCannon I, EMP S
-[empty high slot]''', ({
+[empty high slot]
+
+Garde I x5
+''', ({
     'ship': 'Rifter',
     'name': 'Fleet Tackle',
     'modules': [{'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
                 {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
                 {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': 'Nanofiber Internal Structure I'},
-                {'name': 'Nanofiber Internal Structure I'},
-                {'name': 'Overdrive Injector System I'},
-                {'name': 'Stasis Webifier I'},
-                {'name': 'Warp Disruptor I'},
-                {'name': '1MN Microwarpdrive I'}]
+                {'name': 'Garde I', 'quantity': 5},
+                {'name': 'Nanofiber Internal Structure I', 'quantity': 1},
+                {'name': 'Nanofiber Internal Structure I', 'quantity': 1},
+                {'name': 'Overdrive Injector System I', 'quantity': 1},
+                {'name': 'Stasis Webifier I', 'quantity': 1},
+                {'name': 'Warp Disruptor I', 'quantity': 1},
+                {'name': '1MN Microwarpdrive I', 'quantity': 1}]
     }, []))
 EFT_TABLE.add_test('''
 [Apocalypse, Pimpin' Sniper Fit]
@@ -69,15 +73,16 @@ Tachyon Beam Laser II, Aurora L''', ({
                 {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
                 {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
                 {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Heat Sink II'},
-                {'name': 'Heat Sink II'},
-                {'name': 'Heat Sink II'},
-                {'name': 'Tracking Enhancer II'},
-                {'name': 'Tracking Enhancer II'},
-                {'name': 'Reactor Control Unit II'},
-                {'name': 'Beta Reactor Control: Reaction Control I'},
-                {'name': '100MN Microwarpdrive I'},
-                {'name': 'F-90 Positional Sensor Subroutines'}],
+                {'name': 'Heat Sink II', 'quantity': 1},
+                {'name': 'Heat Sink II', 'quantity': 1},
+                {'name': 'Heat Sink II', 'quantity': 1},
+                {'name': 'Tracking Enhancer II', 'quantity': 1},
+                {'name': 'Tracking Enhancer II', 'quantity': 1},
+                {'name': 'Reactor Control Unit II', 'quantity': 1},
+                {'name': 'Beta Reactor Control: Reaction Control I',
+                 'quantity': 1},
+                {'name': '100MN Microwarpdrive I', 'quantity': 1},
+                {'name': 'F-90 Positional Sensor Subroutines', 'quantity': 1}],
     'ship': 'Apocalypse',
     'name': "Pimpin' Sniper Fit"}, []))
 EFT_TABLE.add_test('[Rifter,test]',
