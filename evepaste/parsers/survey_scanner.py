@@ -21,10 +21,10 @@ def parse_survey_scanner(lines):
     :param string paste_string: A survey scanner result string
     """
     matches, bad_lines = regex_match_lines(SURVEY_SCANNER_RE, lines)
-    __, bad_lines2 = regex_match_lines(SURVEY_SCANNER_IGNORE_RE, bad_lines)
+    _, bad_lines2 = regex_match_lines(SURVEY_SCANNER_IGNORE_RE, bad_lines)
 
     result = [{'name': name,
                'quantity': f_int(quantity),
                'distance': distance}
-              for name, quantity, distance, _ in matches]
+              for name, quantity, distance, _ in matches]  # NOQA (F812)
     return result, bad_lines2
