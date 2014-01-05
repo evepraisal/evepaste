@@ -52,14 +52,14 @@ def parse_victim_data(lines, offset, results):
         transition = common_transitions(line)
         if transition:
             return transition, offset + i + 1
+
+        match = PLAYER_RE.search(line)
+        if match:
+            key, val = match.groups()
+            victim_data[format_key(key)] = val
         else:
-            match = PLAYER_RE.search(line)
-            if match:
-                key, val = match.groups()
-                victim_data[format_key(key)] = val
-            else:
-                raise Unparsable('Failed parsing at line %s: %s'
-                                 % (offset + i, line))
+            raise Unparsable('Failed parsing at line %s: %s'
+                             % (offset + i, line))
     return None, 0
 
 
@@ -75,48 +75,43 @@ def parse_involved_data(lines, offset, results):
 
         if transition:
             break
+
+        match = INVOLVED_RE.search(line)
+        if match:
+            key, val, killing_blow = match.groups()
+            player[format_key(key)] = val
+            if killing_blow:
+                player['killing_blow'] = True
         else:
-            match = INVOLVED_RE.search(line)
-            if match:
-                key, val, killing_blow = match.groups()
-                player[format_key(key)] = val
-                if killing_blow:
-                    player['killing_blow'] = True
-            else:
-                raise Unparsable('Failed parsing at line %s: %s'
-                                 % (offset, line))
+            raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    if transition:
-        if 'involved' not in results:
-            results['involved'] = []
+    if 'involved' not in results:
+        results['involved'] = []
 
-        if player:
-            player['killing_blow'] = player.get('killing_blow', False)
-            player['damage_done'] = int(player.get('damage_done', 0))
-            results['involved'].append(player)
+    if player:
+        player['killing_blow'] = player.get('killing_blow', False)
+        player['damage_done'] = int(player.get('damage_done', 0))
+        results['involved'].append(player)
     return transition, offset
 
 
 def parse_destroyed_items(lines, offset, results):
     destroyed = []
     results['destroyed'] = destroyed
-    transition = None
     for i, line in enumerate(lines[offset:]):
         transition = common_transitions(line)
         if transition:
-            break
-        else:
-            match = ITEM_RE.search(line)
-            if match:
-                name, _, quantity, _, location = match.groups()
-                destroyed.append({'name': name,
-                                  'quantity': f_int(quantity) or 1,
-                                  'location': location})
-            else:
-                raise Unparsable('Failed parsing at line %s: %s'
-                                 % (offset + i, line))
+            return transition, offset + i + 1
 
-    return transition, offset + i + 1
+        match = ITEM_RE.search(line)
+        if match:
+            name, _, quantity, _, location = match.groups()
+            destroyed.append({'name': name,
+                              'quantity': f_int(quantity) or 1,
+                              'location': location})
+        else:
+            raise Unparsable('Failed parsing at line %s: %s'
+                             % (offset + i, line))
 
 
 def parse_dropped_items(lines, offset, results):
