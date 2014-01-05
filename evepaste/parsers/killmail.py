@@ -23,29 +23,46 @@ def parse_killmail(lines):
     """
     results = {}
 
-    offset = 0
+    offset, iterations = 0, 0
     next_state = parse_time_data
-    iterations = 0
+
     while next_state and iterations < 100000:
-        next_state, offset = next_state(lines, offset, results)
+        for result in next_state(lines, offset):
+            kind, token = result
+            if kind == 'state_change':
+                next_state, offset = token
+                break
+            elif kind == 'time':
+                results['time'] = token
+            elif kind == 'victim':
+                results['victim'] = token
+            elif kind == 'involved':
+                if 'involved' not in results:
+                    results['involved'] = []
+                results['involved'].append(token)
+            elif kind == 'destroyed':
+                results['destroyed'] = token
+            elif kind == 'dropped':
+                results['dropped'] = token
         iterations += 1
 
     return results, []
 
 
-def parse_time_data(lines, offset, results):
+def parse_time_data(lines, offset):
     for i, line in enumerate(lines[offset:]):
         if i == 0:
             if not TIME_RE.search(line):
                 raise Unparsable('Missing datetime.')
 
-            results['time'] = line
+            yield 'time', line
         else:
-            return parse_victim_data, offset + i
+            yield 'state_change', (parse_victim_data, offset + i)
+
     raise Unparsable('Failed to parse past time.')
 
 
-def parse_victim_data(lines, offset, results):
+def parse_victim_data(lines, offset):
     victim_data = {}
     transition = None
     for line in lines[offset:]:
@@ -61,11 +78,11 @@ def parse_victim_data(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    results['victim'] = victim_data
-    return transition, offset
+    yield 'victim', victim_data
+    yield 'state_change', (transition, offset)
 
 
-def parse_involved_data(lines, offset, results):
+def parse_involved_data(lines, offset):
     player = {}
     transition = None
     for line in lines[offset:]:
@@ -87,17 +104,14 @@ def parse_involved_data(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    if 'involved' not in results:
-        results['involved'] = []
-
     if player:
         player['killing_blow'] = player.get('killing_blow', False)
         player['damage_done'] = int(player.get('damage_done', 0))
-        results['involved'].append(player)
-    return transition, offset
+        yield 'involved', player
+    yield 'state_change', (transition, offset)
 
 
-def parse_destroyed_items(lines, offset, results):
+def parse_destroyed_items(lines, offset):
     destroyed = []
     transition = None
     for line in lines[offset:]:
@@ -115,11 +129,11 @@ def parse_destroyed_items(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    results['destroyed'] = destroyed
-    return transition, offset
+    yield 'destroyed', destroyed
+    yield 'state_change', (transition, offset)
 
 
-def parse_dropped_items(lines, offset, results):
+def parse_dropped_items(lines, offset):
     dropped = []
     for line in lines[offset:]:
         offset += 1
@@ -132,8 +146,8 @@ def parse_dropped_items(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    results['dropped'] = dropped
-    return None, offset
+    yield 'dropped', dropped
+    yield 'state_change', (None, offset)
 
 
 def common_transitions(line):
