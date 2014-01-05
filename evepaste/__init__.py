@@ -54,6 +54,20 @@ parse_loot_history = unpack_string(parsers.parse_loot_history)
 parse_pi = unpack_string(parsers.parse_pi)
 parse_survey_scanner = unpack_string(parsers.parse_survey_scanner)
 parse_view_contents = unpack_string(parsers.parse_view_contents)
+parse_wallet = unpack_string(parsers.parse_wallet)
+
+PARSER_TABLE = (('bill_of_materials', parsers.parse_bill_of_materials),
+                ('loot_history', parsers.parse_loot_history),
+                ('survey_scanner', parsers.parse_survey_scanner),
+                ('pi', parsers.parse_pi),
+                ('dscan', parsers.parse_dscan),
+                ('eft', parsers.parse_eft),
+                ('fitting', parsers.parse_fitting),
+                ('contract', parsers.parse_contract),
+                ('assets', parsers.parse_assets),
+                ('listing', parsers.parse_listing),
+                ('view_contents', parsers.parse_view_contents),
+                ('wallet', parsers.parse_wallet))
 
 
 def parse(paste_string):
@@ -68,18 +82,7 @@ def parse(paste_string):
     lines = split_and_strip(paste_string)
     for checker in (lambda res, bad_lines: result and not bad_lines,
                     lambda res, bad_lines: result):
-        for name, parser in (('bill_of_materials',
-                              parsers.parse_bill_of_materials),
-                             ('loot_history', parsers.parse_loot_history),
-                             ('survey_scanner', parsers.parse_survey_scanner),
-                             ('pi', parsers.parse_pi),
-                             ('dscan', parsers.parse_dscan),
-                             ('eft', parsers.parse_eft),
-                             ('fitting', parsers.parse_fitting),
-                             ('contract', parsers.parse_contract),
-                             ('assets', parsers.parse_assets),
-                             ('listing', parsers.parse_listing),
-                             ('view_contents', parsers.parse_view_contents)):
+        for name, parser in PARSER_TABLE:
             try:
                 result, bad_lines = parser(lines)
                 if checker(result, bad_lines):
@@ -99,6 +102,10 @@ __all__ = ['parse',
            'parse_eft',
            'parse_fitting',
            'parse_listing',
-           'parse_loot_history']
+           'parse_loot_history',
+           'parse_pi',
+           'parse_survey_scanner',
+           'parse_view_contents',
+           'parse_wallet']
 
 __version__ = '0.2'

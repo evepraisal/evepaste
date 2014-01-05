@@ -16,6 +16,7 @@ from tests.parsers.pi import PI_TABLE
 from tests.parsers.parse import PARSE_TABLE
 from tests.parsers.survey_scanner import SURVEY_SCANNER_TABLE
 from tests.parsers.view_contents import VIEW_CONTENTS_TABLE
+from tests.parsers.wallet import WALLET_TABLE
 
 __all__ = ['ASSET_TABLE',
            'BOM_TABLE',
@@ -28,4 +29,5 @@ __all__ = ['ASSET_TABLE',
            'PI_TABLE',
            'PARSE_TABLE',
            'SURVEY_SCANNER_TABLE',
-           'VIEW_CONTENTS_TABLE']
+           'VIEW_CONTENTS_TABLE',
+           'WALLET_TABLE']

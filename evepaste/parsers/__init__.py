@@ -16,6 +16,7 @@ from evepaste.parsers.loot_history import parse_loot_history
 from evepaste.parsers.pi import parse_pi
 from evepaste.parsers.survey_scanner import parse_survey_scanner
 from evepaste.parsers.view_contents import parse_view_contents
+from evepaste.parsers.wallet import parse_wallet
 
 __all__ = ['parse_assets',
            'parse_bill_of_materials',
@@ -27,4 +28,5 @@ __all__ = ['parse_assets',
            'parse_loot_history',
            'parse_pi',
            'parse_survey_scanner',
-           'parse_view_contents']
+           'parse_view_contents',
+           'parse_wallet']
