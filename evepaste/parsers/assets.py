@@ -28,7 +28,7 @@ def parse_assets(lines):
     matches, bad_lines = regex_match_lines(ASSET_LIST_RE, lines)
 
     result = [{'name': name,
-               'quantity': f_int(quantity or '1'),
+               'quantity': f_int(quantity) or 1,
                'group': group,
                'category': category,
                'size': size,

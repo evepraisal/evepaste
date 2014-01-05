@@ -27,10 +27,10 @@ def parse_listing(lines):
     matches2, bad_lines2 = regex_match_lines(LISTING_RE2, bad_lines)
     matches3, bad_lines3 = regex_match_lines(LISTING_RE3, bad_lines2)
 
-    result = ([{'name': name.strip(), 'quantity': f_int(count)}
+    result = ([{'name': name.strip(), 'quantity': f_int(count) or 1}
                for count, name in matches] +
               [{'name': name.strip(),
-                'quantity': f_int(count or '1')} for name, count in matches2] +
+                'quantity': f_int(count) or 1} for name, count in matches2] +
               [{'name': name[0], 'quantity': 1} for name in matches3])
 
     for item in result:

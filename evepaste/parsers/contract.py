@@ -30,7 +30,7 @@ def parse_contract(lines):
     matches2, bad_lines2 = regex_match_lines(CONTRACT_RE2, bad_lines)
 
     result = [{'name': name,
-               'quantity': f_int(quantity or '1'),
+               'quantity': f_int(quantity) or 1,
                'type': _type,
                'category': category,
                'details': details,
@@ -38,7 +38,7 @@ def parse_contract(lines):
               for name, quantity, _type, category, details in matches]
 
     result2 = [{'name': name,
-               'quantity': f_int(quantity or '1'),
+               'quantity': f_int(quantity) or 1,
                'type': _type} for name, quantity, _type in matches2]
 
     return result + result2, bad_lines2

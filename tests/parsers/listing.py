@@ -33,3 +33,6 @@ LISTING_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Copy)',
                        ([{'name': 'Plagioclase Mining Crystal I Blueprint',
                           'quantity': 10,
                           'details': 'BLUEPRINT COPY'}], []))
+LISTING_TABLE.add_test(', Heavy Assault Missile Launcher II,',
+                       ([{'name': 'Heavy Assault Missile Launcher II,',
+                          'quantity': 1}], []))
