@@ -97,7 +97,8 @@ KILLMAIL_TABLE.add_test(
     '''2013.06.15 17:28:00
 
 Victim: Some poor victim
-Corp: Victim's Corp Name''', ({'victim': {'corp': "Victim's Corp Name",
+Corp: Victim's Corp Name''', ({'destroyed': [], 'dropped': [], 'involved': [],
+                               'victim': {'corp': "Victim's Corp Name",
                                           'victim': 'Some poor victim'},
                                'time': '2013.06.15 17:28:00'}, []))
 KILLMAIL_TABLE.add_test(

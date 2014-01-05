@@ -21,7 +21,11 @@ def parse_killmail(lines):
 
     :param string paste_string: A killmail string
     """
-    results = {}
+    results = {
+        'involved': [],
+        'destroyed': [],
+        'dropped': []
+    }
 
     offset, iterations = 0, 0
     next_state = parse_time_data
@@ -37,16 +41,10 @@ def parse_killmail(lines):
             elif kind == 'victim':
                 results['victim'] = token
             elif kind == 'involved':
-                if 'involved' not in results:
-                    results['involved'] = []
                 results['involved'].append(token)
             elif kind == 'destroyed':
-                if 'destroyed' not in results:
-                    results['destroyed'] = []
                 results['destroyed'].append(token)
             elif kind == 'dropped':
-                if 'dropped' not in results:
-                    results['dropped'] = []
                 results['dropped'].append(token)
         iterations += 1
 
