@@ -27,28 +27,35 @@ def parse_killmail(lines):
         'dropped': []
     }
 
+    result_map = {
+        'time': set_value,
+        'victim': set_value,
+        'involved': append_value,
+        'destroyed': append_value,
+        'dropped': append_value,
+    }
+
     offset, iterations = 0, 0
     next_state = parse_time_data
 
     while next_state and iterations < 100000:
-        for result in next_state(lines, offset):
-            kind, token = result
+        for kind, token in next_state(lines, offset):
             if kind == 'state_change':
                 next_state, offset = token
                 break
-            elif kind == 'time':
-                results['time'] = token
-            elif kind == 'victim':
-                results['victim'] = token
-            elif kind == 'involved':
-                results['involved'].append(token)
-            elif kind == 'destroyed':
-                results['destroyed'].append(token)
-            elif kind == 'dropped':
-                results['dropped'].append(token)
+            elif kind in result_map:
+                result_map[kind](kind, token, results)
         iterations += 1
 
     return results, []
+
+
+def set_value(kind, token, results):
+    results[kind] = token
+
+
+def append_value(kind, token, results):
+    results[kind].append(token)
 
 
 def parse_time_data(lines, offset):
