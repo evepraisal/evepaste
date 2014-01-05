@@ -66,7 +66,7 @@ def parse_victim_data(lines, offset, results):
 def parse_involved_data(lines, offset, results):
     player = {}
     transition = None
-    for i, line in enumerate(lines[offset:]):
+    for line in lines[offset:]:
         offset += 1
         transition = common_transitions(line)
         if player and line.startswith('Name:'):
