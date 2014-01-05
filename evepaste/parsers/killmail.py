@@ -147,7 +147,7 @@ def parse_dropped_items(lines, offset):
         if match:
             name, _, quantity, _, location = match.groups()
             yield 'dropped', {'name': name,
-                              'quantity': quantity,
+                              'quantity': f_int(quantity) or 1,
                               'location': location}
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))

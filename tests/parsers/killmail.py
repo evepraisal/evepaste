@@ -57,7 +57,7 @@ Warrior II (Drone Bay)''', ({
                    'quantity': 1}],
     'dropped': [{'location': 'Drone Bay',
                  'name': 'Warrior II',
-                 'quantity': None}],
+                 'quantity': 1}],
     'involved': [{'alliance': 'Ganker Alliance',
                   'corp': 'Ganker Corp',
                   'damage_done': 14194,
