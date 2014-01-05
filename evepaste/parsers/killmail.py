@@ -47,7 +47,6 @@ def parse_time_data(lines, offset, results):
 
 def parse_victim_data(lines, offset, results):
     victim_data = {}
-    results['victim'] = victim_data
     transition = None
     for line in lines[offset:]:
         offset += 1
@@ -62,6 +61,7 @@ def parse_victim_data(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
+    results['victim'] = victim_data
     return transition, offset
 
 
@@ -99,7 +99,6 @@ def parse_involved_data(lines, offset, results):
 
 def parse_destroyed_items(lines, offset, results):
     destroyed = []
-    results['destroyed'] = destroyed
     transition = None
     for line in lines[offset:]:
         offset += 1
@@ -116,12 +115,12 @@ def parse_destroyed_items(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
+    results['destroyed'] = destroyed
     return transition, offset
 
 
 def parse_dropped_items(lines, offset, results):
     dropped = []
-    results['dropped'] = dropped
     for line in lines[offset:]:
         offset += 1
         match = ITEM_RE.search(line)
@@ -133,6 +132,7 @@ def parse_dropped_items(lines, offset, results):
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
+    results['dropped'] = dropped
     return None, offset
 
 
