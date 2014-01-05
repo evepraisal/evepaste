@@ -41,9 +41,13 @@ def parse_killmail(lines):
                     results['involved'] = []
                 results['involved'].append(token)
             elif kind == 'destroyed':
-                results['destroyed'] = token
+                if 'destroyed' not in results:
+                    results['destroyed'] = []
+                results['destroyed'].append(token)
             elif kind == 'dropped':
-                results['dropped'] = token
+                if 'dropped' not in results:
+                    results['dropped'] = []
+                results['dropped'].append(token)
         iterations += 1
 
     return results, []
@@ -112,7 +116,6 @@ def parse_involved_data(lines, offset):
 
 
 def parse_destroyed_items(lines, offset):
-    destroyed = []
     transition = None
     for line in lines[offset:]:
         offset += 1
@@ -123,30 +126,27 @@ def parse_destroyed_items(lines, offset):
         match = ITEM_RE.search(line)
         if match:
             name, _, quantity, _, location = match.groups()
-            destroyed.append({'name': name,
-                              'quantity': f_int(quantity) or 1,
-                              'location': location})
+            yield 'destroyed', {'name': name,
+                                'quantity': f_int(quantity) or 1,
+                                'location': location}
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    yield 'destroyed', destroyed
     yield 'state_change', (transition, offset)
 
 
 def parse_dropped_items(lines, offset):
-    dropped = []
     for line in lines[offset:]:
         offset += 1
         match = ITEM_RE.search(line)
         if match:
             name, _, quantity, _, location = match.groups()
-            dropped.append({'name': name,
-                            'quantity': quantity,
-                            'location': location})
+            yield 'dropped', {'name': name,
+                              'quantity': quantity,
+                              'location': location}
         else:
             raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
 
-    yield 'dropped', dropped
     yield 'state_change', (None, offset)
 
 
