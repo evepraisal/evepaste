@@ -111,4 +111,4 @@ __all__ = ['parse',
            'parse_view_contents',
            'parse_wallet']
 
-__version__ = '0.2'
+__version__ = '0.3'
