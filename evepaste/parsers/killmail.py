@@ -48,19 +48,21 @@ def parse_time_data(lines, offset, results):
 def parse_victim_data(lines, offset, results):
     victim_data = {}
     results['victim'] = victim_data
-    for i, line in enumerate(lines[offset:]):
+    transition = None
+    for line in lines[offset:]:
+        offset += 1
         transition = common_transitions(line)
         if transition:
-            return transition, offset + i + 1
+            break
 
         match = PLAYER_RE.search(line)
         if match:
             key, val = match.groups()
             victim_data[format_key(key)] = val
         else:
-            raise Unparsable('Failed parsing at line %s: %s'
-                             % (offset + i, line))
-    return None, 0
+            raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
+
+    return transition, offset
 
 
 def parse_involved_data(lines, offset, results):
@@ -98,10 +100,12 @@ def parse_involved_data(lines, offset, results):
 def parse_destroyed_items(lines, offset, results):
     destroyed = []
     results['destroyed'] = destroyed
-    for i, line in enumerate(lines[offset:]):
+    transition = None
+    for line in lines[offset:]:
+        offset += 1
         transition = common_transitions(line)
         if transition:
-            return transition, offset + i + 1
+            break
 
         match = ITEM_RE.search(line)
         if match:
@@ -110,14 +114,16 @@ def parse_destroyed_items(lines, offset, results):
                               'quantity': f_int(quantity) or 1,
                               'location': location})
         else:
-            raise Unparsable('Failed parsing at line %s: %s'
-                             % (offset + i, line))
+            raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
+
+    return transition, offset
 
 
 def parse_dropped_items(lines, offset, results):
     dropped = []
     results['dropped'] = dropped
-    for i, line in enumerate(lines[offset:]):
+    for line in lines[offset:]:
+        offset += 1
         match = ITEM_RE.search(line)
         if match:
             name, _, quantity, _, location = match.groups()
@@ -125,9 +131,9 @@ def parse_dropped_items(lines, offset, results):
                             'quantity': quantity,
                             'location': location})
         else:
-            raise Unparsable('Failed parsing at line %s: %s'
-                             % (offset + i, line))
-    return None, 0
+            raise Unparsable('Failed parsing at line %s: %s' % (offset, line))
+
+    return None, offset
 
 
 def common_transitions(line):
