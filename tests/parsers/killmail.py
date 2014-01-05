@@ -44,6 +44,7 @@ Damage Done: 0
 Destroyed items:
 
 Medium Armor Maintenance Bot I, Qty: 3 (Drone Bay)
+Tengu Engineering - Capacitor Regeneration Matrix
 Power Diagnostic System II (Cargo)
 
 Dropped items:
@@ -52,6 +53,9 @@ Warrior II (Drone Bay)''', ({
     'destroyed': [{'location': 'Drone Bay',
                    'name': 'Medium Armor Maintenance Bot I',
                    'quantity': 3},
+                  {'name': 'Tengu Engineering - Capacitor Regeneration Matrix',
+                   'location': None,
+                   'quantity': 1},
                   {'location': 'Cargo',
                    'name': 'Power Diagnostic System II',
                    'quantity': 1}],
