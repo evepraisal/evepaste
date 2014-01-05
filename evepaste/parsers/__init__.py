@@ -12,6 +12,7 @@ from evepaste.parsers.dscan import parse_dscan
 from evepaste.parsers.eft import parse_eft
 from evepaste.parsers.fitting import parse_fitting
 from evepaste.parsers.listing import parse_listing
+from evepaste.parsers.killmail import parse_killmail
 from evepaste.parsers.loot_history import parse_loot_history
 from evepaste.parsers.pi import parse_pi
 from evepaste.parsers.survey_scanner import parse_survey_scanner
@@ -24,6 +25,7 @@ __all__ = ['parse_assets',
            'parse_dscan',
            'parse_eft',
            'parse_fitting',
+           'parse_killmail',
            'parse_listing',
            'parse_loot_history',
            'parse_pi',

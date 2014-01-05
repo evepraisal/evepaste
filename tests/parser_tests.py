@@ -4,7 +4,8 @@ from tests import parsers, TableChecker
 
 def test_generator():
     # Perform each table test with their associated callable
-    for table in [parsers.LISTING_TABLE,
+    for table in [parsers.KILLMAIL_TABLE,
+                  parsers.LISTING_TABLE,
                   parsers.FITTING_TABLE,
                   parsers.EFT_TABLE,
                   parsers.DSCAN_TABLE,
@@ -23,7 +24,8 @@ def test_generator():
             yield checker, input_str, expected
 
     # Perform each table test with parse() instead of the associated callable
-    for table in [parsers.LISTING_TABLE,
+    for table in [parsers.KILLMAIL_TABLE,
+                  parsers.LISTING_TABLE,
                   parsers.FITTING_TABLE,
                   parsers.EFT_TABLE,
                   parsers.DSCAN_TABLE,

@@ -49,6 +49,7 @@ parse_contract = unpack_string(parsers.parse_contract)
 parse_dscan = unpack_string(parsers.parse_dscan)
 parse_eft = unpack_string(parsers.parse_eft)
 parse_fitting = unpack_string(parsers.parse_fitting)
+parse_killmail = unpack_string(parsers.parse_killmail)
 parse_listing = unpack_string(parsers.parse_listing)
 parse_loot_history = unpack_string(parsers.parse_loot_history)
 parse_pi = unpack_string(parsers.parse_pi)
@@ -61,6 +62,7 @@ PARSER_TABLE = (('bill_of_materials', parsers.parse_bill_of_materials),
                 ('survey_scanner', parsers.parse_survey_scanner),
                 ('pi', parsers.parse_pi),
                 ('dscan', parsers.parse_dscan),
+                ('killmail', parsers.parse_killmail),
                 ('eft', parsers.parse_eft),
                 ('fitting', parsers.parse_fitting),
                 ('contract', parsers.parse_contract),
@@ -101,6 +103,7 @@ __all__ = ['parse',
            'parse_dscan',
            'parse_eft',
            'parse_fitting',
+           'parse_killmail',
            'parse_listing',
            'parse_loot_history',
            'parse_pi',

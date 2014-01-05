@@ -10,6 +10,7 @@ from tests.parsers.contract import CONTRACT_TABLE
 from tests.parsers.dscan import DSCAN_TABLE
 from tests.parsers.eft import EFT_TABLE
 from tests.parsers.fitting import FITTING_TABLE
+from tests.parsers.killmail import KILLMAIL_TABLE
 from tests.parsers.listing import LISTING_TABLE
 from tests.parsers.loot_history import LOOT_HISTORY_TABLE
 from tests.parsers.pi import PI_TABLE
@@ -24,6 +25,7 @@ __all__ = ['ASSET_TABLE',
            'DSCAN_TABLE',
            'EFT_TABLE',
            'FITTING_TABLE',
+           'KILLMAIL_TABLE',
            'LISTING_TABLE',
            'LOOT_HISTORY_TABLE',
            'PI_TABLE',
