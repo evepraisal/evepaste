@@ -14,7 +14,8 @@ def split_and_strip(string):
     :param str string: String to be split and stripped
     """
     # Strip each line
-    lines = [line.strip(' ') for line in string.strip(' ').split('\n')]
+    lines = [line.strip(' ').replace(u'\xa0', ' ')
+             for line in string.strip(' ').split('\n')]
     # Return non-empty lines
     return [line for line in lines if line]
 

@@ -145,3 +145,15 @@ Quafe Zero\t12\tBooster\tImplant\t\t1 \t12 m3\t\t
         'tech_level': '',
         'meta_level': '',
         'quantity': 12}], []))
+ASSET_TABLE.add_test(
+    "Antimatter Charge M\t100\xc2\xa0000\tHybrid Charge\tMedium\t\t"
+    "1\xc2\xa0250 m3",
+    ([{'category': 'Medium',
+     'group': 'Hybrid Charge',
+     'meta_level': None,
+     'name': 'Antimatter Charge M',
+     'quantity': 100000,
+     'size': '',
+     'slot': None,
+     'tech_level': None,
+     'volume': '1 250 m3'}], []))
