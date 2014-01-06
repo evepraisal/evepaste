@@ -67,9 +67,9 @@ PARSER_TABLE = (('bill_of_materials', parsers.parse_bill_of_materials),
                 ('fitting', parsers.parse_fitting),
                 ('contract', parsers.parse_contract),
                 ('assets', parsers.parse_assets),
-                ('listing', parsers.parse_listing),
                 ('view_contents', parsers.parse_view_contents),
-                ('wallet', parsers.parse_wallet))
+                ('wallet', parsers.parse_wallet),
+                ('listing', parsers.parse_listing))
 
 
 def parse(paste_string):
