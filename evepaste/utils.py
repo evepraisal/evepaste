@@ -7,15 +7,15 @@ Utilities and re-usable helper functions for evepaste
 from functools import wraps
 
 
-def split_and_strip(string):
+def split_and_strip(s):
     """
     Strip each line and split by new line. Also, removes empty lines
 
     :param str string: String to be split and stripped
     """
     # Strip each line
-    lines = [line.strip(' ').replace(u'\xa0', ' ')
-             for line in string.strip(' ').split('\n')]
+    lines = [line.strip(' ').replace('\xa0', ' ').replace('\xc2', '')
+             for line in s.strip(' ').split('\n')]
     # Return non-empty lines
     return [line for line in lines if line]
 
