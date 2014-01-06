@@ -16,6 +16,7 @@ VIEW_CONTENTS_TABLE.add_test(
 Bouncer II\tCombat Drone\tDrone Bay\t1
 Drone Link Augmentor II\tDrone Control Range Module\tHigh Slot\t1
 Large Micro Jump Drive\tMicro Jump Drive\tCargo Hold\t1
+Tengu Defensive - Adaptive Shielding\tDefensive Systems\tSubsystem\t1
 Large Trimark Armor Pump I\tRig Armor\tRig Slot\t1
 Medium Electrochemical Capacitor Booster I\tCapacitor Booster\tMedium Slot\t1
 Giant Secure Container\tSecure Cargo Container\t\t1''',
@@ -38,6 +39,10 @@ Giant Secure Container\tSecure Cargo Container\t\t1''',
       {'group': 'Micro Jump Drive',
        'location': 'Cargo Hold',
        'name': 'Large Micro Jump Drive',
+       'quantity': 1},
+      {'group': 'Defensive Systems',
+       'location': 'Subsystem',
+       'name': 'Tengu Defensive - Adaptive Shielding',
        'quantity': 1},
       {'group': 'Rig Armor',
        'location': 'Rig Slot',

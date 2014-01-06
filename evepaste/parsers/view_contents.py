@@ -13,6 +13,7 @@ VIEWCONT_LIST_RE = re.compile(r"""^([\S ]*)\t
                                   (Cargo\ Hold|
                                    Drone\ Bay|
                                    (Low|Medium|High|Rig)\ Slot|
+                                   Subsystem|
                                    )\t
                                   ([\d ,\.]+)$""", re.X)
 
