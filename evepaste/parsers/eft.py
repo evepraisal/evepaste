@@ -50,7 +50,7 @@ def parse_eft(lines):
     for module, ammo in matches:
         module_w_ammo[(module, ammo)] += 1
 
-    for (name, ammo), quantity in module_w_ammo.items():
+    for (name, ammo), quantity in sorted(module_w_ammo.items()):
         modules.append({'name': name, 'ammo': ammo, 'quantity': quantity})
 
     for item in matches2:

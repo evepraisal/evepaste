@@ -58,12 +58,12 @@ Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L''', (
-    {'modules': [{'ammo': 'Aurora L',
-                  'name': 'Tachyon Beam Laser II',
-                  'quantity': 8},
-                 {'ammo': 'Targeting Range Script',
+    {'modules': [{'ammo': 'Targeting Range Script',
                   'name': 'Sensor Booster II',
                   'quantity': 2},
+                 {'ammo': 'Aurora L',
+                  'name': 'Tachyon Beam Laser II',
+                  'quantity': 8},
                  {'name': '100MN Microwarpdrive I', 'quantity': 1},
                  {'name': 'Beta Reactor Control: Reaction Control I',
                   'quantity': 1},
