@@ -33,6 +33,7 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
 CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
  Large Core Defense Field Extender I\t1\tRig Shield\tModule\tFitted
  Scorch M\t1\tAdvanced Pulse Laser Crystal\tCharge\tFitted 72% damaged
+ Scorch L\t2\tAdvanced Pulse Laser Crystal\tCharge\t 1% damaged
  Scorch L\t2\tAdvanced Pulse Laser Crystal\tCharge\t 1% damaged''',
                         ([{'category': 'Module',
                            'details': 'Fitted',
@@ -50,7 +51,7 @@ CONTRACT_TABLE.add_test('''Rokh\t1\tBattleship\tShip\t
                            'details': ' 1% damaged',
                            'fitted': False,
                            'name': 'Scorch L',
-                           'quantity': 2,
+                           'quantity': 4,
                            'type': 'Advanced Pulse Laser Crystal'},
                           {'category': 'Charge',
                            'details': 'Fitted 72% damaged',
