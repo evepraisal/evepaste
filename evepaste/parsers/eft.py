@@ -51,12 +51,12 @@ def parse_eft(lines):
         module_w_ammo[(module, ammo)] += 1
 
     for (name, ammo), quantity in module_w_ammo.items():
-        modules.append({'name': module, 'ammo': ammo, 'quantity': quantity})
+        modules.append({'name': name, 'ammo': ammo, 'quantity': quantity})
 
     for item in matches2:
         modules.append(item)
 
-    result = {'ship': ship.strip(),
-              'name': eft_name.strip(),
+    result = {'ship': ship,
+              'name': eft_name,
               'modules': [res for res in modules]}
     return result, bad_lines2

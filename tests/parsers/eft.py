@@ -59,7 +59,7 @@ Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L''', (
     {'modules': [{'ammo': 'Targeting Range Script',
-                  'name': 'Tachyon Beam Laser II',
+                  'name': 'Sensor Booster II',
                   'quantity': 2},
                  {'ammo': 'Aurora L',
                   'name': 'Tachyon Beam Laser II',
