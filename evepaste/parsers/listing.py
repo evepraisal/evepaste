@@ -4,6 +4,7 @@ evepaste.parsers.assets
 Parse listings including cargo scan results and normal human-readable lists.
 
 """
+from collections import defaultdict
 import re
 
 from evepaste.utils import regex_match_lines, f_int
@@ -27,13 +28,20 @@ def parse_listing(lines):
     matches2, bad_lines2 = regex_match_lines(LISTING_RE2, bad_lines)
     matches3, bad_lines3 = regex_match_lines(LISTING_RE3, bad_lines2)
 
-    result = ([{'name': name.strip(), 'quantity': f_int(count) or 1}
-               for count, name in matches] +
-              [{'name': name.strip(),
-                'quantity': f_int(count) or 1} for name, count in matches2] +
-              [{'name': name[0], 'quantity': 1} for name in matches3])
+    items = defaultdict(int)
 
-    for item in result:
+    for count, name in matches:
+        items[name.strip()] += f_int(count) or 1
+
+    for name, count in matches2:
+        items[name.strip()] += f_int(count) or 1
+
+    for res in matches3:
+        items[res[0].strip()] += 1
+
+    results = []
+    for name, quantity in sorted(items.items()):
+        item = {'name': name, 'quantity': quantity}
         if item['name'].endswith(' (Copy)'):
             item['details'] = 'BLUEPRINT COPY'
             item['name'] = item['name'].replace(' (Copy)', '')
@@ -41,4 +49,6 @@ def parse_listing(lines):
             item['details'] = 'BLUEPRINT ORIGINAL'
             item['name'] = item['name'].replace(' (Original)', '')
 
-    return result, bad_lines3
+        results.append(item)
+
+    return results, bad_lines3

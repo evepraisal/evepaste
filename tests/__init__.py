@@ -22,6 +22,9 @@ class TableChecker(unittest.TestCase):
             self.assertRaises(expected, self.funct, input_str)
         else:
             result = self.funct(input_str)
+            from pprint import pprint
+            pprint(result)
+            pprint(expected)
             self.assertEqual(result, expected)
 
 

@@ -9,14 +9,15 @@ from tests import TableTestGroup
 
 
 LISTING_TABLE = TableTestGroup(parse_listing)
-LISTING_TABLE.add_test('1 Minmatar Shuttle\n2 Gallente Shuttle',
-                       ([{'name': 'Minmatar Shuttle', 'quantity': 1},
-                         {'name': 'Gallente Shuttle', 'quantity': 2}], []))
+LISTING_TABLE.add_test('''1 Minmatar Shuttle
+2 Gallente Shuttle
+Gallente Shuttle''', ([{'name': 'Gallente Shuttle', 'quantity': 3},
+                       {'name': 'Minmatar Shuttle', 'quantity': 1}], []))
 LISTING_TABLE.add_test('\n\n1 Minmatar Shuttle',
                        ([{'name': 'Minmatar Shuttle', 'quantity': 1}], []))
 LISTING_TABLE.add_test('10 Minmatar Shuttle\n2 Gallente Shuttle',
-                       ([{'name': 'Minmatar Shuttle', 'quantity': 10},
-                         {'name': 'Gallente Shuttle', 'quantity': 2}], []))
+                       ([{'name': 'Gallente Shuttle', 'quantity': 2},
+                         {'name': 'Minmatar Shuttle', 'quantity': 10}], []))
 LISTING_TABLE.add_test('Minmatar Shuttle',
                        ([{'name': 'Minmatar Shuttle', 'quantity': 1}], []))
 LISTING_TABLE.add_test('10x Minmatar Shuttle',

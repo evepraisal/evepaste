@@ -24,20 +24,17 @@ Warp Disruptor I
 [empty high slot]
 
 Garde I x5
-''', ({
-    'ship': 'Rifter',
-    'name': 'Fleet Tackle',
-    'modules': [{'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': '200mm AutoCannon I', 'ammo': 'EMP S'},
-                {'name': 'Garde I', 'quantity': 5},
-                {'name': 'Nanofiber Internal Structure I', 'quantity': 1},
-                {'name': 'Nanofiber Internal Structure I', 'quantity': 1},
-                {'name': 'Overdrive Injector System I', 'quantity': 1},
-                {'name': 'Stasis Webifier I', 'quantity': 1},
-                {'name': 'Warp Disruptor I', 'quantity': 1},
-                {'name': '1MN Microwarpdrive I', 'quantity': 1}]
-    }, []))
+''', ({'modules': [{'ammo': 'EMP S', 'name': '200mm AutoCannon I',
+                    'quantity': 3},
+                   {'name': '1MN Microwarpdrive I', 'quantity': 1},
+                   {'name': 'Garde I', 'quantity': 5},
+                   {'name': 'Nanofiber Internal Structure I', 'quantity': 2},
+                   {'name': 'Overdrive Injector System I', 'quantity': 1},
+                   {'name': 'Stasis Webifier I', 'quantity': 1},
+                   {'name': 'Warp Disruptor I', 'quantity': 1}],
+       'name': 'Fleet Tackle',
+       'ship': 'Rifter'}, []))
+
 EFT_TABLE.add_test('''
 [Apocalypse, Pimpin' Sniper Fit]
 Heat Sink II
@@ -60,31 +57,22 @@ Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
 Tachyon Beam Laser II, Aurora L
-Tachyon Beam Laser II, Aurora L''', ({
-    'modules': [{'name': 'Sensor Booster II',
-                 'ammo': 'Targeting Range Script'},
-                {'name': 'Sensor Booster II',
-                 'ammo': 'Targeting Range Script'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Tachyon Beam Laser II', 'ammo': 'Aurora L'},
-                {'name': 'Heat Sink II', 'quantity': 1},
-                {'name': 'Heat Sink II', 'quantity': 1},
-                {'name': 'Heat Sink II', 'quantity': 1},
-                {'name': 'Tracking Enhancer II', 'quantity': 1},
-                {'name': 'Tracking Enhancer II', 'quantity': 1},
-                {'name': 'Reactor Control Unit II', 'quantity': 1},
-                {'name': 'Beta Reactor Control: Reaction Control I',
-                 'quantity': 1},
-                {'name': '100MN Microwarpdrive I', 'quantity': 1},
-                {'name': 'F-90 Positional Sensor Subroutines', 'quantity': 1}],
-    'ship': 'Apocalypse',
-    'name': "Pimpin' Sniper Fit"}, []))
+Tachyon Beam Laser II, Aurora L''', (
+    {'modules': [{'ammo': 'Targeting Range Script',
+                  'name': 'Tachyon Beam Laser II',
+                  'quantity': 2},
+                 {'ammo': 'Aurora L',
+                  'name': 'Tachyon Beam Laser II',
+                  'quantity': 8},
+                 {'name': '100MN Microwarpdrive I', 'quantity': 1},
+                 {'name': 'Beta Reactor Control: Reaction Control I',
+                  'quantity': 1},
+                 {'name': 'F-90 Positional Sensor Subroutines', 'quantity': 1},
+                 {'name': 'Heat Sink II', 'quantity': 3},
+                 {'name': 'Reactor Control Unit II', 'quantity': 1},
+                 {'name': 'Tracking Enhancer II', 'quantity': 2}],
+     'name': "Pimpin' Sniper Fit",
+     'ship': 'Apocalypse'}, []))
 EFT_TABLE.add_test('[Rifter,test]',
                    ({'modules': [], 'name': 'test', 'ship': 'Rifter'}, []))
 EFT_TABLE.add_test('', Unparsable)

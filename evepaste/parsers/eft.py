@@ -5,6 +5,7 @@ Parse EFT blocks.
 
 """
 import re
+from collections import defaultdict
 
 from evepaste.exceptions import Unparsable
 from evepaste.utils import regex_match_lines
@@ -45,8 +46,12 @@ def parse_eft(lines):
     matches, bad_lines = regex_match_lines(EFT_LIST_RE, lines[1:])
     matches2, bad_lines2 = parse_listing(bad_lines)
 
+    module_w_ammo = defaultdict(int)
     for module, ammo in matches:
-        modules.append({'name': module, 'ammo': ammo})
+        module_w_ammo[(module, ammo)] += 1
+
+    for (name, ammo), quantity in module_w_ammo.items():
+        modules.append({'name': module, 'ammo': ammo, 'quantity': quantity})
 
     for item in matches2:
         modules.append(item)
