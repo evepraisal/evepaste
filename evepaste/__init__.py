@@ -57,7 +57,7 @@ parse_survey_scanner = unpack_string(parsers.parse_survey_scanner)
 parse_view_contents = unpack_string(parsers.parse_view_contents)
 parse_wallet = unpack_string(parsers.parse_wallet)
 
-PARSER_TABLE = (('bill_of_materials', parsers.parse_bill_of_materials),
+PARSER_TABLE = [('bill_of_materials', parsers.parse_bill_of_materials),
                 ('loot_history', parsers.parse_loot_history),
                 ('survey_scanner', parsers.parse_survey_scanner),
                 ('pi', parsers.parse_pi),
@@ -69,10 +69,10 @@ PARSER_TABLE = (('bill_of_materials', parsers.parse_bill_of_materials),
                 ('assets', parsers.parse_assets),
                 ('view_contents', parsers.parse_view_contents),
                 ('wallet', parsers.parse_wallet),
-                ('listing', parsers.parse_listing))
+                ('listing', parsers.parse_listing)]
 
 
-def parse(paste_string):
+def parse(paste_string, parsers=None):
     """ Tries out a series of parsers on a peice of text. This will return the
         first result with no errored lines. This should only be used if the
         format of paste_string is unknown. If it is known it is best to use the
@@ -80,17 +80,17 @@ def parse(paste_string):
 
     :param str paste_string: A string of text pasted from somewhere in
                              Eve Online.
+    :param list parsers: A list of parsers. Defaults to a list of all of them
     """
+    parsers = parsers or PARSER_TABLE
     lines = split_and_strip(paste_string)
-    for checker in (lambda res, bad_lines: result and not bad_lines,
-                    lambda res, bad_lines: result):
-        for name, parser in PARSER_TABLE:
-            try:
-                result, bad_lines = parser(lines)
-                if checker(result, bad_lines):
-                    return (name, result, bad_lines)
-            except Unparsable:
-                pass
+    for name, parser in parsers:
+        try:
+            result, bad_lines = parser(lines)
+            if result:
+                return (name, result, bad_lines)
+        except Unparsable:
+            pass
 
     raise Unparsable('No valid parser found for the given text.')
 

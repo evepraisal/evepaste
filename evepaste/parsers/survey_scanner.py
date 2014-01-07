@@ -27,4 +27,7 @@ def parse_survey_scanner(lines):
                'quantity': f_int(quantity),
                'distance': distance}
               for name, quantity, distance, _ in matches]  # NOQA (F812)
-    return result, bad_lines2
+    if matches:
+        return result, []
+    else:
+        return result, bad_lines
