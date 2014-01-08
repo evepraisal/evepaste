@@ -7,6 +7,7 @@ Contains all parser functions for various types of input from Eve Online.
 
 from evepaste.parsers.assets import parse_assets
 from evepaste.parsers.bill_of_materials import parse_bill_of_materials
+from evepaste.parsers.chat import parse_chat
 from evepaste.parsers.contract import parse_contract
 from evepaste.parsers.dscan import parse_dscan
 from evepaste.parsers.eft import parse_eft
@@ -21,6 +22,7 @@ from evepaste.parsers.wallet import parse_wallet
 
 __all__ = ['parse_assets',
            'parse_bill_of_materials',
+           'parse_chat',
            'parse_contract',
            'parse_dscan',
            'parse_eft',

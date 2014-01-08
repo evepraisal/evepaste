@@ -6,6 +6,7 @@ Contains all the table-based tests for evepaste
 """
 from tests.parsers.assets import ASSET_TABLE
 from tests.parsers.bill_of_materials import BOM_TABLE
+from tests.parsers.chat import CHAT_TABLE
 from tests.parsers.contract import CONTRACT_TABLE
 from tests.parsers.dscan import DSCAN_TABLE
 from tests.parsers.eft import EFT_TABLE
@@ -21,6 +22,7 @@ from tests.parsers.wallet import WALLET_TABLE
 
 __all__ = ['ASSET_TABLE',
            'BOM_TABLE',
+           'CHAT_TABLE',
            'CONTRACT_TABLE',
            'DSCAN_TABLE',
            'EFT_TABLE',

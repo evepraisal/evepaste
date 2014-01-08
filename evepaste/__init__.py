@@ -45,6 +45,7 @@ from evepaste.utils import split_and_strip, unpack_string
 # strings.
 parse_assets = unpack_string(parsers.parse_assets)
 parse_bill_of_materials = unpack_string(parsers.parse_bill_of_materials)
+parse_chat = unpack_string(parsers.parse_chat)
 parse_contract = unpack_string(parsers.parse_contract)
 parse_dscan = unpack_string(parsers.parse_dscan)
 parse_eft = unpack_string(parsers.parse_eft)
@@ -63,6 +64,7 @@ PARSER_TABLE = [('bill_of_materials', parsers.parse_bill_of_materials),
                 ('pi', parsers.parse_pi),
                 ('dscan', parsers.parse_dscan),
                 ('killmail', parsers.parse_killmail),
+                ('chat', parsers.parse_chat),
                 ('eft', parsers.parse_eft),
                 ('fitting', parsers.parse_fitting),
                 ('contract', parsers.parse_contract),

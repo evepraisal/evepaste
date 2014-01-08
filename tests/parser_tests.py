@@ -1,18 +1,19 @@
 from evepaste import parse
 from tests import parsers, TableChecker
 
-ALL_TABLES = [parsers.KILLMAIL_TABLE,
-              parsers.LISTING_TABLE,
-              parsers.FITTING_TABLE,
-              parsers.EFT_TABLE,
+ALL_TABLES = [parsers.ASSET_TABLE,
+              parsers.BOM_TABLE,
+              parsers.CHAT_TABLE,
+              parsers.CONTRACT_TABLE,
               parsers.DSCAN_TABLE,
+              parsers.EFT_TABLE,
+              parsers.FITTING_TABLE,
+              parsers.KILLMAIL_TABLE,
+              parsers.LISTING_TABLE,
               parsers.LOOT_HISTORY_TABLE,
               parsers.PI_TABLE,
-              parsers.CONTRACT_TABLE,
-              parsers.ASSET_TABLE,
-              parsers.BOM_TABLE,
-              parsers.VIEW_CONTENTS_TABLE,
               parsers.SURVEY_SCANNER_TABLE,
+              parsers.VIEW_CONTENTS_TABLE,
               parsers.WALLET_TABLE]
 
 
