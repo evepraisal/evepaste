@@ -8,7 +8,7 @@ import re
 
 from evepaste.utils import regex_match_lines, f_int
 
-BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+) - Perfect: (\d+)\]$")
+BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+)( - Perfect: (\d+))?\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
 
 
@@ -22,8 +22,8 @@ def parse_bill_of_materials(lines):
 
     result = [{'name': name,
                'you': f_int(you),
-               'perfect': f_int(perfect)}
-              for name, you, perfect in matches]
+               'perfect': f_int(perfect or you)}
+              for name, you, _, perfect in matches]
     result2 = [{'name': name,
                 'quantity': f_int(quantity)}
                for name, quantity in matches2]

@@ -19,7 +19,7 @@ BOM_TABLE.add_test('Tritanium [899052]',
 BOM_TABLE.add_test('''There is usually some extra text here.
 
 Industry Level I
-Isogen - [You: 174441 - Perfect: 158638]
+Isogen - [You: 1313]
 Megacyte - [You: 3124 - Perfect: 2841]
 Mexallon - [You: 731960 - Perfect: 665650]
 Nocxium - [You: 50170 - Perfect: 45625]
@@ -28,8 +28,8 @@ Tritanium - [You: 11903378 - Perfect: 10825023]
 Zydrine - [You: 12783 - Perfect: 11625]
 Tritanium [899052]
 ''',
-                   ([{'perfect': 158638,
-                     'you': 174441,
+                   ([{'perfect': 1313,
+                     'you': 1313,
                      'name': 'Isogen'},
                     {'perfect': 2841,
                      'you': 3124,
