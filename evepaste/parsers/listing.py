@@ -41,14 +41,6 @@ def parse_listing(lines):
 
     results = []
     for name, quantity in sorted(items.items()):
-        item = {'name': name, 'quantity': quantity}
-        if item['name'].endswith(' (Copy)'):
-            item['details'] = 'BLUEPRINT COPY'
-            item['name'] = item['name'].replace(' (Copy)', '')
-        if item['name'].endswith(' (Original)'):
-            item['details'] = 'BLUEPRINT ORIGINAL'
-            item['name'] = item['name'].replace(' (Original)', '')
-
-        results.append(item)
+        results.append({'name': name, 'quantity': quantity})
 
     return results, bad_lines3

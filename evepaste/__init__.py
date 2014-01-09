@@ -7,7 +7,7 @@ Usage:
 
     >>> import evepaste
     >>> evepaste.parse('10 Cargo Scanner II')
-    ('listing', [{'name': 'Cargo Scanner II', 'quantity': 10}], [])
+    ('cargo_scan', [{'name': 'Cargo Scanner II', 'quantity': 10}], [])
 
     >>> evepaste.parse('''[Rifter, Fleet Tackle]
     ... Nanofiber Internal Structure I
@@ -45,6 +45,7 @@ from evepaste.utils import split_and_strip, unpack_string
 # strings.
 parse_assets = unpack_string(parsers.parse_assets)
 parse_bill_of_materials = unpack_string(parsers.parse_bill_of_materials)
+parse_cargo_scan = unpack_string(parsers.parse_cargo_scan)
 parse_chat = unpack_string(parsers.parse_chat)
 parse_contract = unpack_string(parsers.parse_contract)
 parse_dscan = unpack_string(parsers.parse_dscan)
@@ -71,7 +72,7 @@ PARSER_TABLE = [('bill_of_materials', parsers.parse_bill_of_materials),
                 ('assets', parsers.parse_assets),
                 ('view_contents', parsers.parse_view_contents),
                 ('wallet', parsers.parse_wallet),
-                ('listing', parsers.parse_listing)]
+                ('cargo_scan', parsers.parse_cargo_scan)]
 
 
 def parse(paste_string, parsers=None):
@@ -101,12 +102,12 @@ __all__ = ['parse',
            'Unparsable',
            'parse_assets',
            'parse_bill_of_materials',
+           'parse_cargo_scan',
            'parse_contract',
            'parse_dscan',
            'parse_eft',
            'parse_fitting',
            'parse_killmail',
-           'parse_listing',
            'parse_loot_history',
            'parse_pi',
            'parse_survey_scanner',

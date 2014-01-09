@@ -9,8 +9,8 @@ from tests import TableTestGroup
 
 
 PARSE_TABLE = TableTestGroup(parse)
-PARSE_TABLE.add_test('''rifter
-\t\t\t\t\t\t\t\t\t\t''', ('listing',
-                          [{'name': 'rifter', 'quantity': 1}],
+PARSE_TABLE.add_test('''10 rifter
+\t\t\t\t\t\t\t\t\t\t''', ('cargo_scan',
+                          [{'name': 'rifter', 'quantity': 10}],
                           ['\t\t\t\t\t\t\t\t\t\t']))
 PARSE_TABLE.add_test('', Unparsable)

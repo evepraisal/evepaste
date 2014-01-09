@@ -3,13 +3,13 @@ from tests import parsers, TableChecker
 
 ALL_TABLES = [parsers.ASSET_TABLE,
               parsers.BOM_TABLE,
+              parsers.CARGO_SCAN_TABLE,
               parsers.CHAT_TABLE,
               parsers.CONTRACT_TABLE,
               parsers.DSCAN_TABLE,
               parsers.EFT_TABLE,
               parsers.FITTING_TABLE,
               parsers.KILLMAIL_TABLE,
-              parsers.LISTING_TABLE,
               parsers.LOOT_HISTORY_TABLE,
               parsers.PI_TABLE,
               parsers.SURVEY_SCANNER_TABLE,
@@ -19,7 +19,7 @@ ALL_TABLES = [parsers.ASSET_TABLE,
 
 def test_generator():
     # Perform each table test with their associated callable
-    for table in ALL_TABLES + [parsers.PARSE_TABLE]:
+    for table in ALL_TABLES + [parsers.PARSE_TABLE, parsers.LISTING_TABLE]:
         for i, (input_str, expected) in enumerate(table.tests):
             name = ('test_%s[%s]' % (str(table.funct.__name__), i))
             checker = TableChecker(table.funct, name)
