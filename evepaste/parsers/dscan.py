@@ -9,9 +9,9 @@ import re
 from evepaste.utils import regex_match_lines
 
 
-DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t                # item name
-                                ([\S ]*)\t                # name
-                                ([\d ,\.]* (m|km|AU|-))$  # distance
+DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t                  # item name
+                                ([\S ]*)\t                  # name
+                                (([\d,\.]*\ (m|km|AU))|-)$  # distance
                                 """, re.X)
 
 
@@ -23,5 +23,5 @@ def parse_dscan(lines):
     matches, bad_lines = regex_match_lines(DSCAN_LIST_RE, lines)
 
     result = [{'item_name': item_name, 'name': name, 'distance': distance}
-              for item_name, name, distance, _ in matches]
+              for item_name, name, distance, _, _ in matches]
     return result, bad_lines

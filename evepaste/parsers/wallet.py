@@ -9,20 +9,20 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 JOURNAL_RE = re.compile(r"""^(\d\d\d\d.\d\d.\d\d\ \d\d:\d\d:\d\d)\t  # time
-                             ([\S ]+)\t                 # transaction type
-                             ([-\d ,\.]+\ (ISK|AUR))\t  # amount
-                             ([\d ,\.]+\ (ISK|AUR))\t   # balance
-                             ([\S ]*)$                  # description
+                             ([\S ]+)\t                # transaction type
+                             ([-\d,\.]+\ (ISK|AUR))\t  # amount
+                             ([\d,\.]+\ (ISK|AUR))\t   # balance
+                             ([\S ]*)$                 # description
                          """, re.X)
 
 TRANSACTION_RE = re.compile(r"""^(\d\d\d\d.\d\d.\d\d\ \d\d:\d\d)\t  # when
-                             ([\S ]+)\t                 # name
-                             ([\d ,\.]+\ (ISK|AUR))\t   # price
-                             ([\d ,\.]+)\t              # quantity
-                             ([-\d ,\.]+\ (ISK|AUR))\t  # credit
-                             (ISK|AUR)\t                # currency
-                             ([\S ]+)\t                 # client
-                             ([\S ]+)$                  # where
+                             ([\S ]+)\t                # name
+                             ([\d,\.]+\ (ISK|AUR))\t   # price
+                             ([\d,\.]+)\t              # quantity
+                             ([-\d,\.]+\ (ISK|AUR))\t  # credit
+                             (ISK|AUR)\t               # currency
+                             ([\S ]+)\t                # client
+                             ([\S ]+)$                 # where
                          """, re.X)
 
 

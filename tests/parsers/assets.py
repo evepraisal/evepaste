@@ -102,7 +102,7 @@ Sleeper Data Library\t1.080\tSleeper Components\t\t\t10.80 m3
         'tech_level': None,
         'volume': '10.80 m3'}], []))
 ASSET_TABLE.add_test('''
-Sleeper Data Library\t1 080\tSleeper Components\t\t\t10.80 m3
+Sleeper Data Library\t1\xc2\xa0080\tSleeper Components\t\t\t10.80 m3
 ''', ([{'category': '',
         'group': 'Sleeper Components',
         'meta_level': None,
@@ -156,4 +156,4 @@ ASSET_TABLE.add_test(
      'size': '',
      'slot': None,
      'tech_level': None,
-     'volume': '1 250 m3'}], []))
+     'volume': '1250 m3'}], []))

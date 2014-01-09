@@ -9,7 +9,7 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 LOOT_HIST_RE = re.compile(
-    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted ([\d ,\.]+) x ([\S ]+)$")
+    r"(\d\d:\d\d:\d\d) ([\S ]+) has looted ([\d,\.]+) x ([\S ]+)$")
 
 
 def parse_loot_history(lines):

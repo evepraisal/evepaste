@@ -8,20 +8,20 @@ import re
 
 from evepaste.utils import regex_match_lines, f_int
 
-PI_RE = re.compile(r"""^([\d ,\.]+)\t            # quantity
+PI_RE = re.compile(r"""^([\d,\.]+)\t             # quantity
                         ([\S ]+)\t               # name
                         ((Routed|Not\ routed))$  # routed
                     """, re.X)
 
-PI_RE2 = re.compile(r"""^\t             # icon
-                         ([\S ]+)\t     # name
-                         ([\d ,\.]+)\t  # quantity
-                         ([\d ,\.]+)$   # volume
+PI_RE2 = re.compile(r"""^\t            # icon
+                         ([\S ]+)\t    # name
+                         ([\d,\.]+)\t  # quantity
+                         ([\d,\.]+)$   # volume
                      """, re.X)
 
-PI_RE3 = re.compile(r"""^\t             # icon
-                         ([\S ]+)\t     # name
-                         ([\d ,\.]+)$   # quantity
+PI_RE3 = re.compile(r"""^\t            # icon
+                         ([\S ]+)\t    # name
+                         ([\d,\.]+)$   # quantity
                      """, re.X)
 
 

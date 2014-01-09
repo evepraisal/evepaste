@@ -11,13 +11,13 @@ from evepaste.utils import regex_match_lines, f_int
 
 
 CONTRACT_RE = re.compile(r"""^([\S ]*)\t     # name
-                              ([\d ,\.]*)\t  # quantity
+                              ([\d,\.]*)\t   # quantity
                               ([\S ]*)\t     # type
                               ([\S ]*)\t     # category
                               ([\S ]*)$      # details
                               """, re.X)
 CONTRACT_RE2 = re.compile(r"""^([\S ]*)\t     # name
-                               ([\d ,\.]*)\t  # quantity
+                               ([\d,\.]*)\t   # quantity
                                ([\S ]*)$      # type
                                """, re.X)
 
