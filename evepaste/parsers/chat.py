@@ -9,7 +9,7 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 CHAT_RE = re.compile(r"^\[(\d\d:\d\d:\d\d)\] ([\S ]+?) > (.*)$")
-CHAT_ITEM_RE = re.compile(r"<url=showinfo:([\d]+?)>([\S ]+)</url>")
+CHAT_ITEM_RE = re.compile(r"<url=showinfo:([\d]+?)>([\S ]+?)</url>")
 
 
 def parse_chat(lines):
