@@ -8,7 +8,7 @@ import re
 
 from evepaste.utils import regex_match_lines, f_int
 
-CHAT_RE = re.compile(r"^\[(\d\d:\d\d:\d\d)\] ([\S ]+?) > (.*)$")
+CHAT_RE = re.compile(r"^(\[(\d\d:\d\d:\d\d)\] )?([\S ]+?) > (.*)$")
 CHAT_ITEM_RE = re.compile(r"<url=showinfo:([\d]+?)>([\S ]+?)</url>")
 
 
@@ -20,7 +20,7 @@ def parse_chat(lines):
     matches, bad_lines = regex_match_lines(CHAT_RE, lines)
 
     lines = [{'time': time, 'author': author, 'message': message}
-             for time, author, message in matches]
+             for _, time, author, message in matches]
 
     items = {}
     if lines:

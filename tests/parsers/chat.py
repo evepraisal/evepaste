@@ -30,3 +30,16 @@ CHAT_TABLE.add_test(
                  'time': '01:46:40'},
                 {'author': 'Some Dude', 'message': '2.', 'time': '01:46:41'}]},
      []))
+
+CHAT_TABLE.add_test(
+    '''Some Dude > No time for time!
+Guy123 > okay, bro. Take a <url=showinfo:587>Rifter</url>
+''',
+    ({'items': [{'id': 587, 'name': 'Rifter'}],
+      'lines': [{'author': 'Some Dude',
+                 'message': 'No time for time!',
+                 'time': None},
+                {'author': 'Guy123',
+                 'message': 'okay, bro. Take a <url=showinfo:587>Rifter</url>',
+                 'time': None}]},
+     []))
