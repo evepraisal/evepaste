@@ -4,6 +4,7 @@ evepaste.parsers.view_contents
 Parse results from 'View Contents' of a ship.
 
 """
+from collections import defaultdict
 import re
 
 from evepaste.utils import regex_match_lines, f_int
@@ -25,12 +26,14 @@ def parse_view_contents(lines):
     """
     matches, bad_lines = regex_match_lines(VIEWCONT_LIST_RE, lines)
 
-    result = [{'name': name,
-               'group': group,
-               'location': location,
-               'quantity': f_int(quantity)}
-              for (name,
-                   group,
-                   location, _,
-                   quantity) in matches]
-    return result, bad_lines
+    items = defaultdict(int)
+    for name, group, location, _, quantity in matches:
+        items[(name, group, location)] += f_int(quantity)
+
+    results = [{'name': name,
+                'group': group,
+                'location': location,
+                'quantity': quantity}
+               for (name, group, location), quantity in sorted(items.items())]
+
+    return results, bad_lines
