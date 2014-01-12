@@ -101,7 +101,7 @@ Sleeper Data Library\t1.080\tSleeper Components\t\t\t10.80 m3
         'slot': None,
         'tech_level': None,
         'volume': '10.80 m3'}], []))
-ASSET_TABLE.add_test('''
+ASSET_TABLE.add_test(u'''
 Sleeper Data Library\t1\xc2\xa0080\tSleeper Components\t\t\t10.80 m3
 ''', ([{'category': '',
         'group': 'Sleeper Components',
@@ -146,8 +146,8 @@ Quafe Zero\t12\tBooster\tImplant\t\t1 \t12 m3\t\t
         'meta_level': '',
         'quantity': 12}], []))
 ASSET_TABLE.add_test(
-    "Antimatter Charge M\t100\xc2\xa0000\tHybrid Charge\tMedium\t\t"
-    "1\xc2\xa0250 m3",
+    u"Antimatter Charge M\t100\xc2\xa0000\tHybrid Charge\tMedium\t\t"
+    u"1\xc2\xa0250 m3",
     ([{'category': 'Medium',
      'group': 'Hybrid Charge',
      'meta_level': None,
