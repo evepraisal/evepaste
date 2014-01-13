@@ -18,3 +18,6 @@ LISTING_TABLE.add_test('Minmatar Shuttle x 10',
 LISTING_TABLE.add_test(', Heavy Assault Missile Launcher II,',
                        ([{'name': 'Heavy Assault Missile Launcher II,',
                           'quantity': 1}], []))
+LISTING_TABLE.add_test('Heavy Assault Missile Launcher II 10',
+                       ([{'name': 'Heavy Assault Missile Launcher II',
+                          'quantity': 10}], []))
