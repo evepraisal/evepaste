@@ -57,3 +57,17 @@ Giant Secure Container\tSecure Cargo Container\t\t1''',
        'location': u'Subsystem',
        'name': u'Tengu Defensive - Adaptive Shielding',
        'quantity': 1}], []))
+VIEW_CONTENTS_TABLE.add_test(
+    '''Festival Launcher\tFestival Launcher\t1
+Festival Launcher\tFestival Launcher\t1
+Hornet EC-300\tElectronic Warfare Drone\t50
+Men's 'Esquire' Coat (red/gold)\tOuter\t1
+''', ([{'group': u'Festival Launcher',
+        'name': u'Festival Launcher',
+        'quantity': 2},
+       {'group': u'Electronic Warfare Drone',
+        'name': u'Hornet EC-300',
+        'quantity': 50},
+       {'group': u'Outer',
+        'name': u"Men's 'Esquire' Coat (red/gold)",
+        'quantity': 1}], []))
