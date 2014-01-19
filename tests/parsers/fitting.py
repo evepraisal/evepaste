@@ -34,7 +34,9 @@ Charges
 8,718x Caldari Navy Scourge Heavy Missile
 1x Targeting Range Dampening Script
 Drones
-12 Warrior II''', ([
+12 Warrior II
+Fuel
+Helium Isotopes''', ([
     {'name': 'Adaptive Invulnerability Field II', 'quantity': 2},
     {'name': 'Ballistic Control System II', 'quantity': 3},
     {'name': 'Caldari Navy Scourge Heavy Missile', 'quantity': 8718},
@@ -42,6 +44,7 @@ Drones
     {'name': 'Domination 100MN Afterburner', 'quantity': 1},
     {'name': 'Dread Guristas EM Ward Amplifier', 'quantity': 1},
     {'name': 'Heavy Missile Launcher II', 'quantity': 5},
+    {'name': 'Helium Isotopes', 'quantity': 1},
     {'name': 'Large Shield Extender II', 'quantity': 1},
     {'name': 'Medium Ancillary Current Router I', 'quantity': 1},
     {'name': 'Medium Core Defense Field Extender I', 'quantity': 2},

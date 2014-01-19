@@ -14,7 +14,8 @@ FITTING_BLACKLIST = ['High power',
                      'Rig Slot',
                      'Sub System',
                      'Charges',
-                     'Drones']
+                     'Drones',
+                     'Fuel']
 
 
 def parse_fitting(lines):
