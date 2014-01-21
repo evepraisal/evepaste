@@ -10,6 +10,11 @@ from evepaste.utils import regex_match_lines, f_int
 
 BOM_RE = re.compile(r"^([\S ]+) - \[You: (\d+)( - Perfect: (\d+))?\]$")
 BOM_RE2 = re.compile(r"^([\S ]+) \[([\d]+)\]$")
+IGNORED_LINES = ['Bill of Materials does not take into consideration the '
+                 'efficiency of an installation.',
+                 'Extra Materials are not affected by skills and are not '
+                 'returned when recycling the manufactured product.',
+                 'No Item']
 
 
 def parse_bill_of_materials(lines):
@@ -27,4 +32,10 @@ def parse_bill_of_materials(lines):
     result2 = [{'name': name,
                 'quantity': f_int(quantity)}
                for name, quantity in matches2]
-    return result + result2, bad_lines2
+    results = result + result2
+    if results:
+        for line in IGNORED_LINES:
+            if line in bad_lines2:
+                bad_lines2.remove(line)
+
+    return results, bad_lines2

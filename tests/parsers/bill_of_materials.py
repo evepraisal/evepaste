@@ -16,9 +16,13 @@ BOM_TABLE.add_test('Zydrine - [You: 12783 - Perfect: 11625]',
 BOM_TABLE.add_test('Tritanium [899052]',
                    ([{'name': 'Tritanium',
                       'quantity': 899052}], []))
-BOM_TABLE.add_test('''There is usually some extra text here.
+BOM_TABLE.add_test('''
+Bill of Materials does not take into consideration the efficiency of an \
+installation.
 
-Industry Level I
+Extra Materials are not affected by skills and are not returned when \
+recycling the manufactured product.
+
 Isogen - [You: 1313]
 Megacyte - [You: 3124 - Perfect: 2841]
 Mexallon - [You: 731960 - Perfect: 665650]
@@ -27,6 +31,7 @@ Pyerite - [You: 3274449 - Perfect: 2977809]
 Tritanium - [You: 11903378 - Perfect: 10825023]
 Zydrine - [You: 12783 - Perfect: 11625]
 Tritanium [899052]
+No Item
 ''',
                    ([{'perfect': 1313,
                      'you': 1313,
@@ -50,6 +55,4 @@ Tritanium [899052]
                      'you': 12783,
                      'name': 'Zydrine'},
                     {'name': 'Tritanium',
-                     'quantity': 899052}],
-                    ['There is usually some extra text here.',
-                     'Industry Level I']))
+                     'quantity': 899052}], []))
