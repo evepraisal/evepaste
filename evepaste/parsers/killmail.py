@@ -10,10 +10,10 @@ from evepaste.exceptions import Unparsable
 from evepaste.utils import f_int
 
 
-TIME_RE = re.compile(r"^(\d\d\d\d.\d\d.\d\d \d\d:\d\d:\d\d)$")
+TIME_RE = re.compile(r"^(\d\d\d\d.\d\d.\d\d \d\d:\d\d(:\d\d)?)$")
 PLAYER_RE = re.compile(r"^([\w ]+): ([\S ]+)$")
 INVOLVED_RE = re.compile(r"^([\w ]+): ([\S ]+?)( \(laid the final blow\))?$")
-ITEM_RE = re.compile(r"^([\w -]+?)(, Qty: (\d+))?( \(([\w ]+)\))?$")
+ITEM_RE = re.compile(r"^([\w '-]+?)(, Qty: (\d+))?( \(([\w ]+)\))?$")
 
 
 def parse_killmail(lines):

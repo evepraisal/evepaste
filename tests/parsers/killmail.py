@@ -135,3 +135,18 @@ Dropped items:
 
 Medium Armor Maintenance Bot I, Qty: 3 (Drone Bay)
 #$%^&*(''', Unparsable)
+
+KILLMAIL_TABLE.add_test('''2014.01.25 14:30
+
+Victim: Some poor victim
+
+Destroyed items:
+
+Shock 'Limos' Citadel Torpedo Bay I, Qty: 2
+''', ({'destroyed': [{'location': None,
+                      'name': u"Shock 'Limos' Citadel Torpedo Bay I",
+                      'quantity': 2}],
+       'dropped': [],
+       'involved': [],
+       'time': u'2014.01.25 14:30',
+       'victim': {u'victim': u'Some poor victim'}}, []))
