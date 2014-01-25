@@ -18,6 +18,7 @@ Medium power
 1x Phased Muon Sensor Disruptor I
 2x Adaptive Invulnerability Field II
 Low power
+Low power
 1x Damage Control II
 1x Reactor Control Unit II
 3x Ballistic Control System II
@@ -37,24 +38,24 @@ Drones
 12 Warrior II
 Fuel
 Helium Isotopes''', ([
-    {'name': 'Adaptive Invulnerability Field II', 'quantity': 2},
-    {'name': 'Ballistic Control System II', 'quantity': 3},
-    {'name': 'Caldari Navy Scourge Heavy Missile', 'quantity': 8718},
-    {'name': 'Damage Control II', 'quantity': 1},
-    {'name': 'Domination 100MN Afterburner', 'quantity': 1},
-    {'name': 'Dread Guristas EM Ward Amplifier', 'quantity': 1},
-    {'name': 'Heavy Missile Launcher II', 'quantity': 5},
-    {'name': 'Helium Isotopes', 'quantity': 1},
-    {'name': 'Large Shield Extender II', 'quantity': 1},
-    {'name': 'Medium Ancillary Current Router I', 'quantity': 1},
-    {'name': 'Medium Core Defense Field Extender I', 'quantity': 2},
-    {'name': 'Phased Muon Sensor Disruptor I', 'quantity': 1},
-    {'name': 'Reactor Control Unit II', 'quantity': 1},
-    {'name': 'Targeting Range Dampening Script', 'quantity': 1},
-    {'name': 'Tengu Defensive - Supplemental Screening', 'quantity': 1},
-    {'name': 'Tengu Electronics - Dissolution Sequencer', 'quantity': 1},
-    {'name': 'Tengu Engineering - Capacitor Regeneration Matrix',
+    {'name': u'Adaptive Invulnerability Field II', 'quantity': 2},
+    {'name': u'Ballistic Control System II', 'quantity': 3},
+    {'name': u'Caldari Navy Scourge Heavy Missile', 'quantity': 8718},
+    {'name': u'Damage Control II', 'quantity': 1},
+    {'name': u'Domination 100MN Afterburner', 'quantity': 1},
+    {'name': u'Dread Guristas EM Ward Amplifier', 'quantity': 1},
+    {'name': u'Heavy Missile Launcher II', 'quantity': 5},
+    {'name': u'Helium Isotopes', 'quantity': 1},
+    {'name': u'Large Shield Extender II', 'quantity': 1},
+    {'name': u'Medium Ancillary Current Router I', 'quantity': 1},
+    {'name': u'Medium Core Defense Field Extender I', 'quantity': 2},
+    {'name': u'Phased Muon Sensor Disruptor I', 'quantity': 1},
+    {'name': u'Reactor Control Unit II', 'quantity': 1},
+    {'name': u'Targeting Range Dampening Script', 'quantity': 1},
+    {'name': u'Tengu Defensive - Supplemental Screening', 'quantity': 1},
+    {'name': u'Tengu Electronics - Dissolution Sequencer', 'quantity': 1},
+    {'name': u'Tengu Engineering - Capacitor Regeneration Matrix',
      'quantity': 1},
-    {'name': 'Tengu Offensive - Accelerated Ejection Bay', 'quantity': 1},
-    {'name': 'Tengu Propulsion - Fuel Catalyst', 'quantity': 1},
-    {'name': 'Warrior II', 'quantity': 12}], []))
+    {'name': u'Tengu Offensive - Accelerated Ejection Bay', 'quantity': 1},
+    {'name': u'Tengu Propulsion - Fuel Catalyst', 'quantity': 1},
+    {'name': u'Warrior II', 'quantity': 12}], []))

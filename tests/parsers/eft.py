@@ -22,6 +22,7 @@ Warp Disruptor I
 200mm AutoCannon I, EMP S
 200mm AutoCannon I, EMP S
 [empty high slot]
+[empty high slot]
 
 Garde I x5
 ''', ({'modules': [{'ammo': 'EMP S', 'name': '200mm AutoCannon I',

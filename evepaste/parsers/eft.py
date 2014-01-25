@@ -24,9 +24,7 @@ def parse_eft(lines):
 
     :param string paste_string: An EFT block string
     """
-    for item in EFT_BLACKLIST:
-        if item in lines:
-            lines.remove(item)
+    lines = [line for line in lines if line not in EFT_BLACKLIST]
 
     if not lines:
         raise Unparsable('No valid parsable lines')

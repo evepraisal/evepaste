@@ -24,13 +24,9 @@ def parse_fitting(lines):
     :param string paste_string: A new-line separated list of items
     """
 
-    is_fitting_listing = False
-    for item in FITTING_BLACKLIST:
-        if item in lines:
-            lines.remove(item)
-            is_fitting_listing = True
-
-    if is_fitting_listing is False:
+    if any([True for line in lines if line in FITTING_BLACKLIST]):
+        lines = [line for line in lines if line not in FITTING_BLACKLIST]
+    else:
         raise Unparsable('Not a fitting list')
 
     return parse_listing(lines)
