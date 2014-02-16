@@ -15,7 +15,7 @@ def split_and_strip(s):
     """
     # Strip each line
     lines = [line.strip(' ').replace(u"\xa0", u"").replace(u"\xc2", u"")
-             for line in s.strip(' ').split('\n')]
+             for line in s.strip(' ').replace("\r\n", "\n").split('\n')]
     # Return non-empty lines
     return [line for line in lines if line]
 
