@@ -15,6 +15,7 @@ VIEW_CONTENTS_TABLE.add_test(
 100MN Microwarpdrive II\tPropulsion Module\tMedium Slot\t1
 Bouncer II\tCombat Drone\tDrone Bay\t1
 Bouncer II\tCombat Drone\tDrone Bay\t1
+Nitrogen Isotopes\tIce Product\tFuel Bay\t20000
 Drone Link Augmentor II\tDrone Control Range Module\tHigh Slot\t1
 Large Micro Jump Drive\tMicro Jump Drive\tCargo Hold\t1
 Tengu Defensive - Adaptive Shielding\tDefensive Systems\tSubsystem\t1
@@ -53,6 +54,10 @@ Giant Secure Container\tSecure Cargo Container\t\t1''',
        'location': u'Medium Slot',
        'name': u'Medium Electrochemical Capacitor Booster I',
        'quantity': 1},
+      {'group': u'Ice Product',
+       'location': u'Fuel Bay',
+       'name': u'Nitrogen Isotopes',
+       'quantity': 20000},
       {'group': u'Defensive Systems',
        'location': u'Subsystem',
        'name': u'Tengu Defensive - Adaptive Shielding',

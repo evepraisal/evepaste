@@ -12,7 +12,7 @@ from evepaste.utils import regex_match_lines, f_int
 VIEWCONT_LIST_RE = re.compile(r"""^([\S ]*)\t
                                   ([\S ]*)\t
                                   (Cargo\ Hold|
-                                   Drone\ Bay|
+                                   (Drone|Fuel)\ Bay|
                                    (Low|Medium|High|Rig)\ Slot|
                                    Subsystem|
                                    )\t
@@ -31,7 +31,8 @@ def parse_view_contents(lines):
     matches2, bad_lines2 = regex_match_lines(STATION_CONTAINER_RE, bad_lines)
 
     items = defaultdict(int)
-    for name, group, location, _, quantity in matches:
+    print matches[0:1]
+    for name, group, location, _, _, quantity in matches:
         items[(name, group, location)] += f_int(quantity)
 
     results = [{'name': name,
