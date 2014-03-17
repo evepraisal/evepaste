@@ -31,7 +31,6 @@ def parse_view_contents(lines):
     matches2, bad_lines2 = regex_match_lines(STATION_CONTAINER_RE, bad_lines)
 
     items = defaultdict(int)
-    print matches[0:1]
     for name, group, location, _, _, quantity in matches:
         items[(name, group, location)] += f_int(quantity)
 
