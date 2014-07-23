@@ -16,7 +16,8 @@ EFT_LIST_RE = re.compile(r"^([\S ]+), ?([\S ]+)$")
 EFT_BLACKLIST = ['[empty high slot]',
                  '[empty low slot]',
                  '[empty medium slot]',
-                 '[empty rig slot]']
+                 '[empty rig slot]',
+                 '[empty subsystem slot]']
 
 
 def parse_eft(lines):
@@ -24,7 +25,7 @@ def parse_eft(lines):
 
     :param string paste_string: An EFT block string
     """
-    lines = [line for line in lines if line not in EFT_BLACKLIST]
+    lines = [line for line in lines if line.lower() not in EFT_BLACKLIST]
 
     if not lines:
         raise Unparsable('No valid parsable lines')
