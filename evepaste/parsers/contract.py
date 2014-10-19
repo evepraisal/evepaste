@@ -50,7 +50,7 @@ def parse_contract(lines):
         items2[(name, _type)] += f_int(quantity) or 1
 
     result2 = [{'name': name,
-               'quantity': quantity,
-               'type': _type} for (name, _type), quantity in items2.items()]
+                'quantity': quantity,
+                'type': _type} for (name, _type), quantity in items2.items()]
 
     return result + result2, bad_lines2
