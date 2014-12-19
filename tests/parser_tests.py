@@ -2,7 +2,6 @@ from evepaste import parse
 from tests import parsers, TableChecker
 
 ALL_TABLES = [parsers.ASSET_TABLE,
-              parsers.BOM_TABLE,
               parsers.CARGO_SCAN_TABLE,
               parsers.CHAT_TABLE,
               parsers.CONTRACT_TABLE,
