@@ -9,8 +9,8 @@ import re
 from evepaste.utils import regex_match_lines, f_int
 
 SURVEY_SCANNER_RE = re.compile(r"""^([\S ]+)\t           # name
-                                    ([\d,\.]+)\t         # quantity
-                                    ([\d,\.]*\ (m|km))$  # distance
+                                    ([\d,'\.]+)\t        # quantity
+                                    ([\d,'\.]*\ (m|km))$ # distance
                                 """, re.X)
 
 

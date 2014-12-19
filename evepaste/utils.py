@@ -5,6 +5,7 @@ Utilities and re-usable helper functions for evepaste
 
 """
 from functools import wraps
+from re import sub
 
 
 def split_and_strip(s):
@@ -42,12 +43,14 @@ def regex_match_lines(regex, lines):
 def f_int(num):
     """ Converts a given numeric string into an integer
 
-    :param string num: A string of the format "123,456", "123 456" or "123456"
+    :param string num: A string of the format "123,456", "123'456", "123 456"
+                    or "123456"
     """
     if num is None:
         return
     try:
-        return int(num.replace(',', '').replace('.', '').replace(' ', ''))
+        return int(sub(r"[,'\. ']", '', num))
+
     except ValueError:
         return 0
 

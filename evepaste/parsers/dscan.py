@@ -11,7 +11,7 @@ from evepaste.utils import regex_match_lines
 
 DSCAN_LIST_RE = re.compile(r"""^([\S ]*)\t                  # item name
                                 ([\S ]*)\t                  # name
-                                (([\d,\.]*\ (m|km|AU))|-)$  # distance
+                                (([\d,'\.]*\ (m|km|AU))|-)$ # distance
                                 """, re.X)
 
 

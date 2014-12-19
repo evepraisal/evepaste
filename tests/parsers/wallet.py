@@ -28,3 +28,15 @@ WALLET_TABLE.add_test(
        'quantity': 1,
        'time': '2014.01.04 16:08',
        'where': 'Otanuomi IV - Moon 4 - Ishukone Corporation Factory'}], []))
+WALLET_TABLE.add_test(
+    "2014.12.19 20:04\tMedium Core Defense Capacitor Safeguard II\t"
+    "7'999'996.10 ISK\t1\t7'999'996.10 ISK\tISK\tOrmand Ishikela\t"
+    "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+    ([{'client': 'Ormand Ishikela',
+       'credit': "7'999'996.10 ISK",
+       'currency': 'ISK',
+       'name': 'Medium Core Defense Capacitor Safeguard II',
+       'price': "7'999'996.10 ISK",
+       'quantity': 1,
+       'time': '2014.12.19 20:04',
+       'where': 'Jita IV - Moon 4 - Caldari Navy Assembly Plant'}], []))
