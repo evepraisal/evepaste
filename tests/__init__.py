@@ -4,6 +4,7 @@ tests
 Tests and test helpers for evepaste
 
 """
+from __future__ import print_function
 
 import inspect
 import unittest
@@ -23,7 +24,9 @@ class TableChecker(unittest.TestCase):
         else:
             result = self.funct(input_str)
             from pprint import pprint
+            print("Result:")
             pprint(result)
+            print("Expected:")
             pprint(expected)
             self.assertEqual(result, expected)
 
