@@ -44,7 +44,6 @@ from evepaste.utils import split_and_strip, unpack_string
 # Add the ability for each supported parser take a string instead of a list of
 # strings.
 parse_assets = unpack_string(parsers.parse_assets)
-parse_bill_of_materials = unpack_string(parsers.parse_bill_of_materials)
 parse_cargo_scan = unpack_string(parsers.parse_cargo_scan)
 parse_chat = unpack_string(parsers.parse_chat)
 parse_contract = unpack_string(parsers.parse_contract)
@@ -59,8 +58,7 @@ parse_survey_scanner = unpack_string(parsers.parse_survey_scanner)
 parse_view_contents = unpack_string(parsers.parse_view_contents)
 parse_wallet = unpack_string(parsers.parse_wallet)
 
-PARSER_TABLE = [('bill_of_materials', parsers.parse_bill_of_materials),
-                ('loot_history', parsers.parse_loot_history),
+PARSER_TABLE = [('loot_history', parsers.parse_loot_history),
                 ('survey_scanner', parsers.parse_survey_scanner),
                 ('pi', parsers.parse_pi),
                 ('dscan', parsers.parse_dscan),
@@ -101,7 +99,6 @@ def parse(paste_string, parsers=None):
 __all__ = ['parse',
            'Unparsable',
            'parse_assets',
-           'parse_bill_of_materials',
            'parse_cargo_scan',
            'parse_contract',
            'parse_dscan',

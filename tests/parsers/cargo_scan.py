@@ -29,3 +29,5 @@ CARGO_SCAN_TABLE.add_test('10 Plagioclase Mining Crystal I Blueprint (Copy)',
                           ([{'name': 'Plagioclase Mining Crystal I Blueprint',
                              'quantity': 10,
                              'details': 'BLUEPRINT COPY'}], []))
+CARGO_SCAN_TABLE.add_test("12'000 Tengu",
+    ([{'name': 'Tengu', 'quantity': 12000}], []))
