@@ -11,7 +11,7 @@ from evepaste.utils import regex_match_lines, f_int
 
 
 # 10 Cargo Scanner II
-CARGO_SCAN_RE = re.compile(r"^([\d,\.]+) ([\S ]+)$")
+CARGO_SCAN_RE = re.compile(r"^([\d,'\.]+) ([\S ]+)$")
 
 
 def parse_cargo_scan(lines):

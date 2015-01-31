@@ -74,3 +74,10 @@ CONTRACT_TABLE.add_test('425mm Railgun I\t2000\tHybrid Weapon',
                            'type': 'Hybrid Weapon',
                            'quantity': 2000}], []))
 CONTRACT_TABLE.add_test('Rokh', ([], ['Rokh']))
+CONTRACT_TABLE.add_test("Rokh\t12'000\tBattleship\tShip\t",
+                        ([{'name': 'Rokh',
+                           'quantity': 12000,
+                           'type': 'Battleship',
+                           'category': 'Ship',
+                           'details': '',
+                           'fitted': False}], []))

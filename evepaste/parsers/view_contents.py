@@ -16,10 +16,10 @@ VIEWCONT_LIST_RE = re.compile(r"""^([\S ]*)\t
                                    (Low|Medium|High|Rig)\ Slot|
                                    Subsystem|
                                    )\t
-                                  ([\d,\.]+)$""", re.X)
+                                  ([\d,'\.]+)$""", re.X)
 STATION_CONTAINER_RE = re.compile(r"""^([\S ]*)\t
                                        ([\S ]*)\t
-                                       ([\d,\.]+)$""", re.X)
+                                       ([\d,'\.]+)$""", re.X)
 
 
 def parse_view_contents(lines):

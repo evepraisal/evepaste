@@ -157,3 +157,13 @@ ASSET_TABLE.add_test(
      'slot': None,
      'tech_level': None,
      'volume': '1250 m3'}], []))
+ASSET_TABLE.add_test("Hurricane\t12'000\tCombat Battlecruiser\t\t\t15,000 m3",
+                     ([{'category': '',
+                        'slot': None,
+                        'group': 'Combat Battlecruiser',
+                        'name': 'Hurricane',
+                        'volume': '15,000 m3',
+                        'size': '',
+                        'tech_level': None,
+                        'meta_level': None,
+                        'quantity': 12000}], []))
