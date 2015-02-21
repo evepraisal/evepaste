@@ -11,7 +11,7 @@ from evepaste.utils import regex_match_lines, f_int
 
 
 # 10 Cargo Scanner II
-INDUSTRY_RE = re.compile(r"^([\S ]+) \(([\d]+) Units\)$")
+INDUSTRY_RE = re.compile(r"^([\S ]+) \(([\d]+) Units?\)$")
 
 
 def parse_industry(lines):

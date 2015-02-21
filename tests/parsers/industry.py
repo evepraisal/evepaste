@@ -20,3 +20,7 @@ Nocxium (51 Units)''', ([
     {'name': 'Pyerite', 'quantity': 1857},
     {'name': 'Tritanium', 'quantity': 4662}],
     []))
+
+INDUSTRY_TABLE.add_test('''Strontuim Clathrates (1 Unit)''',
+                        ([{'name': 'Strontuim Clathrates', 'quantity': 1}],
+                         []))
