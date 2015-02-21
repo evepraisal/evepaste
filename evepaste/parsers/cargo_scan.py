@@ -1,5 +1,5 @@
 """
-evepaste.parsers.assets
+evepaste.parsers.cargo_scan
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Parse listings including cargo scan results and normal human-readable lists.
 

@@ -57,20 +57,24 @@ parse_pi = unpack_string(parsers.parse_pi)
 parse_survey_scanner = unpack_string(parsers.parse_survey_scanner)
 parse_view_contents = unpack_string(parsers.parse_view_contents)
 parse_wallet = unpack_string(parsers.parse_wallet)
+parse_industry = unpack_string(parsers.parse_industry)
 
-PARSER_TABLE = [('loot_history', parsers.parse_loot_history),
-                ('survey_scanner', parsers.parse_survey_scanner),
-                ('pi', parsers.parse_pi),
-                ('dscan', parsers.parse_dscan),
-                ('killmail', parsers.parse_killmail),
-                ('chat', parsers.parse_chat),
-                ('eft', parsers.parse_eft),
-                ('fitting', parsers.parse_fitting),
-                ('contract', parsers.parse_contract),
-                ('assets', parsers.parse_assets),
-                ('view_contents', parsers.parse_view_contents),
-                ('wallet', parsers.parse_wallet),
-                ('cargo_scan', parsers.parse_cargo_scan)]
+PARSER_TABLE = [
+    ('loot_history', parsers.parse_loot_history),
+    ('survey_scanner', parsers.parse_survey_scanner),
+    ('pi', parsers.parse_pi),
+    ('dscan', parsers.parse_dscan),
+    ('killmail', parsers.parse_killmail),
+    ('chat', parsers.parse_chat),
+    ('eft', parsers.parse_eft),
+    ('fitting', parsers.parse_fitting),
+    ('contract', parsers.parse_contract),
+    ('assets', parsers.parse_assets),
+    ('view_contents', parsers.parse_view_contents),
+    ('wallet', parsers.parse_wallet),
+    ('cargo_scan', parsers.parse_cargo_scan),
+    ('industry', parsers.parse_industry),
+]
 
 
 def parse(paste_string, parsers=None):
@@ -96,19 +100,22 @@ def parse(paste_string, parsers=None):
     raise Unparsable('No valid parser found for the given text.')
 
 
-__all__ = ['parse',
-           'Unparsable',
-           'parse_assets',
-           'parse_cargo_scan',
-           'parse_contract',
-           'parse_dscan',
-           'parse_eft',
-           'parse_fitting',
-           'parse_killmail',
-           'parse_loot_history',
-           'parse_pi',
-           'parse_survey_scanner',
-           'parse_view_contents',
-           'parse_wallet']
+__all__ = [
+    'parse',
+    'parse_assets',
+    'parse_cargo_scan',
+    'parse_contract',
+    'parse_dscan',
+    'parse_eft',
+    'parse_fitting',
+    'parse_industry',
+    'parse_killmail',
+    'parse_loot_history',
+    'parse_pi',
+    'parse_survey_scanner',
+    'parse_view_contents',
+    'parse_wallet',
+    'Unparsable',
+]
 
 __version__ = '0.8'
